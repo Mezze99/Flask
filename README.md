@@ -4,7 +4,7 @@ Databases
 
 Servus,
 
-to open pls start dockerizeddb in venv/virtualenv on your local machine
+to open pls start docker_database in venv/virtualenv on your local machine
 
 you need docker preinstalled on ur machine
 
