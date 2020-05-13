@@ -4,21 +4,23 @@ Databases
 
 Servus,
 
-to open pls start docker_database in venv/virtualenv on your local machine
+Requirements: Docker
 
-you need docker preinstalled on ur machine
+Follow the steps below:
 
-edit config.pi: in DATABASE_URI enter your postgresql credentials
+1. cd into /Docker 2
 
-in /dockerdb run:
+2. Build image:
 
-docker-compose up --build -d
+$ docker-compose build
 
-in /src run:
-Linux: export FLASK_APP=app.py
-Windows: 
+3. Run container:
 
-set FLASK_APP=app.py
-flask run
+$ docker-compose up -d
 
-you can now find successful on localhost/5000
+got to http://localhost:5000/
+
+
+sometimes its useful to
+
+$ docker-compose up -d --build
