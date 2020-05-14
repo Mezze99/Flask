@@ -23,6 +23,24 @@ class User(db.Model):
         self.name = name
         self.phone = phone
 
+
+class Player(db.Model):
+    #__tablename__ = "players"
+
+    id = db.Column(db.Integer, primary_key=True)
+    fname = db.Column(db.String(128), unique=True, nullable=False)
+    lname = db.Column(db.String(100))
+    pl_no = db.Column(db.Integer)
+    nationality = db.Column(db.String(100))
+    pl_goals = db.Column(db.Integer)
+
+    def __init__(self, fname, lname, pl_no, nationality, pl_goals):
+        self.fname = fname
+        self.lname = lname
+        self.pl_no = pl_no
+        self.nationality = nationality
+        self.pl_goals = pl_goals
+
 # class Post(db.Model):
 #     id = db.Column(db.Integer, primary_key=True)
 #     body = db.Column(db.String(140))
@@ -41,7 +59,8 @@ def hello_world():
 @app.route('/index')
 def index():
     user = {'username': 'Tim'}
-    return render_template('index.html', title='Home', user=user)
+    all_data = User.query.all()
+    return render_template('index.html', title='Home', user=user, employees=all_data)
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -79,6 +98,15 @@ def Index():
     all_data = User.query.all()
 
     return render_template("index2.html", employees=all_data)
+
+# query on all our employee data
+a = '/player'
+@app.route(a)
+def Players():
+    all_data = Player.query.all()
+
+    return render_template("player.html", employees=all_data)
+
 
 #this is our update route where we are going to update our employee
 @app.route('/update', methods = ['GET', 'POST'])
