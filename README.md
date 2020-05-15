@@ -22,8 +22,9 @@ cd to Flask/docker_database/dockerized
 > cd to Flask/docker_database/dockerized/src
 
 8. 
-Windows Powershell: $env:FLASK_APP = "main.py"
-Linux: export FLASK_APP = "main.py"
+Windows Powershell: > $env:FLASK_APP = "main.py" 
+
+Linux: > export FLASK_APP = "main.py"
 
 9.
 > flask run
