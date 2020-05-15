@@ -27,7 +27,10 @@ Optional: (create virtual environment)
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 open config.py in visual studio -> 
-change *user* and *password* the DATABASE_URI="postgresql//:{user}:{password}/localhost:5432/soccer"
+
+change *user* and *password* to YOUR pgadmin-credentials in the 
+
+DATABASE_URI="postgresql//:{user}:{password}/localhost:5432/soccer"
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 9. 
