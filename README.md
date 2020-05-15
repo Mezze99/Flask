@@ -13,7 +13,8 @@ cd to Flask/docker_database/dockerized
 4. 
 > docker-compose up --build -d
 
-(optional: create virtual environment)
+Optional: (create virtual environment)
+
 5. 
 > pip install -r requirements.txt
 
