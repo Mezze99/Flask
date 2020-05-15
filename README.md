@@ -1,26 +1,29 @@
 # Flask
-Databases
+Databases (still using docker)
 
+1. 
+Install Docker
 
-Servus,
+2. 
+Python 3.6.7 recommended
 
-Requirements: Docker
+3. 
+cd to Flask/docker_database/dockerized
 
-Follow the steps below:
+4. 
+> docker-compose up --build -d
 
-1. cd into /Docker 2
+(optional: create virtual environment)
+5. 
+> pip install -r requirements.txt
+> pip install -r requirements2.txt
 
-2. Build image:
+7. 
+> cd to Flask/docker_database/dockerized/src
 
-$ docker-compose build
+8. 
+Windows Powershell: $env:FLASK_APP = "main.py"
+Linux: export FLASK_APP = "main.py"
 
-3. Run container:
-
-$ docker-compose up -d
-
-got to http://localhost:5000/
-
-
-sometimes its useful to
-
-$ docker-compose up -d --build
+9.
+> flask run
