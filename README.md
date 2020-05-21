@@ -1,26 +1,44 @@
 # Flask
-Databases
+Databases (still using docker)
 
 
-Servus,
-
-Requirements: Docker
-
-Follow the steps below:
-
-1. cd into /Docker 2
-
-2. Build image:
-
-$ docker-compose build
-
-3. Run container:
-
-$ docker-compose up -d
-
-got to http://localhost:5000/
+10 steps to heaven ;)
 
 
-sometimes its useful to
+1. Install Docker
 
-$ docker-compose up -d --build
+2. Python 3.6.7 recommended
+
+3. cd to Flask/docker_database/dockerized
+
+4. Build docker container
+> docker-compose up --build -d
+
+Optional: (create virtual environment)
+
+5. 
+> pip install -r requirements.txt
+
+6.
+> pip install -r requirements2.txt
+
+7. 
+> cd to Flask/docker_database/dockerized/src
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+open config.py in visual studio -> 
+
+change *user* and *password* to YOUR pgadmin-credentials in the 
+
+DATABASE_URI="postgresql//:{user}:{password}/localhost:5432/soccer"
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+9. 
+Windows Powershell: 
+> $env:FLASK_APP = "main.py" 
+
+Linux: 
+> export FLASK_APP = "main.py"
+
+10.
+> flask run
