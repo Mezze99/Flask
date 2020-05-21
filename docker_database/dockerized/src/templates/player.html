@@ -70,9 +70,9 @@
                         <td>{{row.nationality}}</td>
 
                         <td>
-                            <a href="/update/{{row.id}}" class="btn btn-warning btn-xs" data-toggle="modal"
+                            <a href="/update_player/{{row.id}}" class="btn btn-warning btn-xs" data-toggle="modal"
                                 data-target="#modaledit{{row.id}}">Edit</a>
-                            <a href="/delete/{{row.id}}" class="btn btn-danger btn-xs"
+                            <a href="/delete_player/{{row.id}}" class="btn btn-danger btn-xs"
                                 onclick="return confirm('Are You Sure To Delete ?')">Delete</a>
 
 
@@ -101,7 +101,7 @@
                                 <div class="modal-body">
 
 
-                                    <form action="{{url_for('update')}}" method="POST">
+                                    <form action="{{url_for('update_player')}}" method="POST">
 
 
                                         <div class="form-group">
@@ -217,7 +217,7 @@
                         </div>
                         <div class="modal-body">
 
-                            <form action="{{url_for('insert')}}" method="POST">
+                            <form action="{{url_for('insert_player')}}" method="POST">
 
 
                                 <div class="form-group">
