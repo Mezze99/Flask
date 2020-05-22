@@ -38,7 +38,7 @@ def run():
 def query_goalgetter():
     # session = Session()
     all_users = []
-    x = 0
+    #x = 0
     userss = db.session.query(Player).order_by(Player.pl_goals).all()
     for u in userss:
         all_users.append(u.fname)

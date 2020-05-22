@@ -46,3 +46,32 @@ class Player(db.Model):
     
     def __repr__(self):
         return '<Player %r>' % (self.name)
+
+class Title(db.Model):
+    __tablename__ = "title"
+
+    year = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(30))
+    winning_team = db.Column(db.String(30))
+
+    def __init__(self, title, year, winning_team):
+        self.title = title
+        self.year = year
+        self.winning_team = winning_team
+    
+    def __repr__(self):
+        return '<Title %r>' % (self.title)
+
+class Table(db.Model):
+    __tablename__ = "table"
+
+    id = db.Column(db.Integer, primary_key=True)
+    position_last_year = db.Column(db.String(30))
+    Position_this_year = db.Column(db.String(30))
+
+    def __init__(self, position_last_year, position_this_year):
+        self.position_last_year = position_last_year
+        self.position_this_year = position_this_year
+    
+    def __repr__(self):
+        return '<Table %r>' % (self.id)
