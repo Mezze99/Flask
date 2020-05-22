@@ -35,10 +35,10 @@ DATABASE_URI="postgresql//:{user}:{password}/localhost:5432/soccer"
 
 9. 
 Windows Powershell: 
-> $env:FLASK_APP = "main.py" 
+> $env:FLASK_APP = "app.py" 
 
 Linux: 
-> export FLASK_APP = "main.py"
+> export FLASK_APP = "app.py"
 
 10.
 > flask run
