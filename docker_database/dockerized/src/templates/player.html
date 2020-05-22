@@ -101,7 +101,7 @@
                                 <div class="modal-body">
 
 
-                                    <form action="{{url_for('update_player')}}" method="POST">
+                                    <form action="{{ url_for('update_player') }}" method="POST">
 
 
                                         <div class="form-group">
@@ -110,7 +110,7 @@
                                             <label>First Name:</label>
                                             <input type="hidden" name="id" value="{{row.id}}">
 
-                                            <input type="text" class="form-control" name="name" value="{{row.fname}}">
+                                            <input type="text" class="form-control" name="fname" value="{{row.fname}}">
 
 
                                         </div>
@@ -122,7 +122,7 @@
 
                                             <label>Last Name:</label>
 
-                                            <input type="text" class="form-control" name="email" value="{{row.lname}}">
+                                            <input type="text" class="form-control" name="lname" value="{{row.lname}}">
 
 
                                         </div>
@@ -133,7 +133,7 @@
 
                                             <label>Number:</label>
 
-                                            <input type="text" class="form-control" name="phone" value="{{row.pl_no}}">
+                                            <input type="text" class="form-control" name="pl_no" value="{{row.pl_no}}">
 
 
                                         </div>
@@ -143,7 +143,7 @@
 
                                             <label>Goals:</label>
 
-                                            <input type="text" class="form-control" name="goals"
+                                            <input type="text" class="form-control" name="pl_goals"
                                                 value="{{row.pl_goals}}">
 
 
@@ -154,7 +154,7 @@
 
                                             <label>Nationality:</label>
 
-                                            <input type="text" class="form-control" name="goals"
+                                            <input type="text" class="form-control" name="nationality"
                                                 value="{{row.nationality}}">
 
 

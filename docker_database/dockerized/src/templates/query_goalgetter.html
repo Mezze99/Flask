@@ -1,27 +1,25 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Home - SQL Queries</h1>
+    <h1>Hi,!</h1>
     This is index page.
-
-    <!-- This is a button for SQL Query -->
-    <div>
-    <a href="{{ url_for('query_goalgetter') }}" class="btn btn-warning btn-xs">SQL Query - Top Goalgetter</a>
-    </div>
-    <form method="GET">
-        <div>
-            <input type="submit" name="submit_button" value="Do Something">
-        </div>
-        <div>
-            <button type=submit></button>
-        </div>
-</form>
     {% for post in posts %}
     <div><p>{{ post.author.username }} says: <b>{{ post.body }}</b></p></div>
     {% endfor %}
-
     <div>
-    <table class="table table-hover table-active">
+        <div>
+            {% for u in user %}
+            <div>
+           {{ u }}
+           {{ user }}
+            </div>
+            {% endfor %}
+            
+           <div class="modal-footer">
+
+         </div>
+        </div>
+    <!-- <table class="table table-hover table-active">
     <tr>
 
         <th>ID</th>
@@ -33,7 +31,7 @@
     </tr>
 
 
-   {% for row in employees %}
+   {% for row in employee %}
     <tr>
         <td>{{row.id}}</td>
         <td>{{row.name}}</td>
@@ -41,8 +39,6 @@
         <td>{{row.phone}}</td>
     </tr>
     {% endfor %}
-
-</table>
-
+</table> -->
 </div>
 {% endblock %}

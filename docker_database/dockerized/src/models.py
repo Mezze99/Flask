@@ -28,7 +28,7 @@ class User(db.Model):
         return '<User %r>' % (self.name)
 
 class Player(db.Model):
-    __tablename__ = "players"
+    __tablename__ = "player"
 
     id = db.Column(db.Integer, primary_key=True)
     fname = db.Column(db.String(128), unique=True, nullable=False)

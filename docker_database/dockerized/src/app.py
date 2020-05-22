@@ -34,6 +34,21 @@ def run():
     # session.close()
     return render_template('show_user.html', user=all_users)
 
+@app.route('/query_goalgetter', methods=['GET'])
+def query_goalgetter():
+    # session = Session()
+    all_users = []
+    x = 0
+    userss = db.session.query(Player).order_by(Player.pl_goals).all()
+    for u in userss:
+        all_users.append(u.fname)
+        print(all_users)
+        # x+=1
+        # x_list
+    # session.close()
+    return render_template('query_goalgetter.html', user=all_users)
+
+
 @app.route('/add', methods=['POST'])
 def add():
     data = request.get_json()
@@ -57,6 +72,13 @@ def edit(cat_id):
     new_price = data['price']
     database.edit_instance(Soccer, id=cat_id, price=new_price)
     return json.dumps("Edited"), 200
+
+@app.route('/index')
+def Index2():
+    all_data = Player.query.all()
+
+    return render_template("index.html", user=all_data), 200
+
 
 @app.route('/index2')
 def Index():
@@ -109,12 +131,12 @@ def delete(id):
     return redirect(url_for('Index'))
 
 # query on all our employee data
-a = '/player'
-@app.route(a)
+#a = '/player'
+@app.route('/player')
 def Players():
     all_data = Player.query.all()
 
-    return render_template("player.html", employees=all_data)
+    return render_template("player.html", employees=all_data), 200
 
 @app.route('/insert_player', methods=['POST'])
 def insert_player():
@@ -139,11 +161,11 @@ def insert_player():
 #this is our update route where we are going to update our employee
 @app.route('/update_player', methods = ['GET', 'POST'])
 def update_player():
- 
+    print("hzurray")
     if request.method == 'POST':
         my_data = Player.query.get(request.form.get('id'))
         #fname, lname, pl_no, nationality, 
-        
+        print('yes')
         my_data.fname = request.form['fname']
         my_data.lname = request.form['lname']
         my_data.pl_no = request.form['pl_no']
@@ -152,8 +174,8 @@ def update_player():
 
  
         db.session.commit()
-        flash("Player Updated Successfully")
- 
+        #flash("Player Updated Successfully")
+        print("jahuu")
         return redirect(url_for('Players'))
 
 #This route is for deleting our employee
@@ -162,6 +184,6 @@ def delete_player(id):
     my_data = Player.query.get(id)
     db.session.delete(my_data)
     db.session.commit()
-    flash("Player Deleted Successfully")
+    #flash("Player Deleted Successfully")
  
     return redirect(url_for('Players'))
