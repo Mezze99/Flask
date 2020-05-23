@@ -42,6 +42,7 @@ def query_goalgetter():
     userss = db.session.query(Player).order_by(Player.pl_goals).all()
     for u in userss:
         all_users.append(u.fname)
+        #goals.append(u.)
         print(all_users)
         # x+=1
         # x_list

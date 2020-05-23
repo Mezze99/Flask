@@ -46,3 +46,17 @@ class Player(db.Model):
     
     def __repr__(self):
         return '<Player %r>' % (self.name)
+
+class Team(db.Model):
+    __tablename__ = "team"
+
+    id = db.Column(db.Integer, primary_key=True)
+    team_name = db.Column(db.String(128), unique=True, nullable=False)
+    city = db.Column(db.String(100))
+
+    def __init__(self, team_name, city):
+        self.team_name = team_name
+        self.city = city
+    
+    def __repr__(self):
+        return '<Team %r>' % (self.name)
