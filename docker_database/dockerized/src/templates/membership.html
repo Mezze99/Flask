@@ -1,0 +1,219 @@
+{% extends 'base.html' %}
+
+
+
+
+{% block title %} Home {% endblock %}
+
+
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col md-12">
+
+            <div class="jumbotron p-3">
+
+                <h2>Manage <b>Memberships</b> <button type="button" class="btn btn-success float-right" data-toggle="modal"
+                        data-target="#mymodal">Add New Membership</button> </h2>
+
+
+                {% with messages = get_flashed_messages() %}
+
+                {% if messages %}
+
+                {% for message in messages %}
+
+                <div class="alert alert-success alert-dismissable" role="alert">
+
+                    <button type="button" class="close" data-dismiss="alert" aria-label="close">
+
+                        <span aria-hidden="true">x</span>
+
+                    </button>
+
+
+                    {{message}}
+
+
+                </div>
+
+
+                {% endfor %}
+
+                {% endif %}
+                {% endwith %}
+
+
+                <table class="table table-hover table-dark">
+
+                    <tr>
+
+                        <th>ID</th>
+                        <th>Number Members</th>
+                    </tr>
+
+
+                    {% for row in data %}
+                    <tr>
+                        <td>{{row.id}}</td>
+                        <td>{{row.number_members}}</td>
+
+                        <td>
+                            <a href="/update_membership/{{row.id}}" class="btn btn-warning btn-xs" data-toggle="modal"
+                                data-target="#modaledit{{row.id}}">Edit</a>
+                            <a href="/delete_membership/{{row.id}}" class="btn btn-danger btn-xs"
+                                onclick="return confirm('Are You Sure To Delete ?')">Delete</a>
+
+
+                        </td>
+
+                    </tr>
+
+
+                    <!-- Modal Edit Employee-->
+                    <div id="modaledit{{row.id}}" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+
+
+                            <div class="modal-content">
+
+
+                                <div class="modal-header">
+
+
+                                    <h4 class="modal-title">Update Information</h4>
+
+
+                                </div>
+
+
+                                <div class="modal-body">
+
+
+                                    <form action="{{ url_for('update_membership') }}" method="POST">
+
+
+                                        <div class="form-group">
+
+
+                                            <label>Number Members:</label>
+                                            <input type="hidden" name="id" value="{{row.id}}">
+
+                                            <input type="text" class="form-control" name="number_members" value="{{row.number_members}}">
+
+
+                                        </div>
+
+
+                                        <div class="form-group">
+
+
+                                            <button class="btn btn-primary" type="submit">Update</button>
+
+
+                                        </div>
+
+
+                                    </form>
+
+
+                                </div>
+
+
+                                <div class="modal-footer">
+
+
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+
+                    {% endfor %}
+
+
+                </table>
+
+
+            </div>
+
+
+
+            <!-- Modal Add Employee-->
+
+
+            <div id="mymodal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+
+                            <h4 class="modal-title">Add Membership</h4>
+                        </div>
+                        <div class="modal-body">
+
+                            <form action="{{url_for('insert_membership')}}" method="POST">
+
+
+                                <div class="form-group">
+
+                                    <label>Number Members:</label>
+                                    <input type="text" class="form-control" name="number_members" required="1">
+
+
+                                </div>
+
+                                <div class="form-group">
+
+
+                                    <button class="btn btn-primary" type="submit">Add Membership</button>
+
+
+                                </div>
+
+
+                            </form>
+
+
+                        </div>
+
+
+                        <div class="modal-footer">
+
+
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+
+
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+{% endblock %}
