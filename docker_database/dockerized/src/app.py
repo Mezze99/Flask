@@ -3,7 +3,7 @@ import json
 from flask import request, render_template, redirect, flash, url_for
 
 from . import create_app, database
-from .models import db, Soccer, User, Player, Table, Title, Coach, Membership
+from .models import db, Soccer, User, Player, Table, Title, Coach, Membership, Sponsoring
 
 app = create_app()
 app.debug = True #receive better error messages
@@ -378,3 +378,50 @@ def delete_membership(id):
     #flash("Player Deleted Successfully")
  
     return redirect(url_for('Memberships'))
+
+@app.route('/sponsoring')
+def Sponsorings():
+    all_data = Sponsoring.query.all()
+
+    return render_template("sponsoring.html", data=all_data), 200
+
+@app.route('/insert_sponsoring', methods=['POST'])
+def insert_sponsoring():
+ 
+    if request.method == 'POST':
+        start_date = request.form['start_date']
+        sponsor_name = request.form['sponsor_name']
+     
+        my_data = Sponsoring(start_date, sponsor_name)
+        db.session.add(my_data)
+        db.session.commit()
+
+        #database.add_instance(model=Soccer, name, email, phone)
+        #flash("Table Inserted Successfully")
+        return redirect(url_for('Sponsorings'))
+
+#this is our update route where we are going to update our employee
+@app.route('/update_sponsoring', methods = ['GET', 'POST'])
+def update_sponsoring():
+    print("hzurray")
+    if request.method == 'POST':
+        my_data = Sponsoring.query.get(request.form.get('id'))
+
+        print('yes')
+        my_data.start_date = request.form['start_date']
+        my_data.sponsor_name= request.form['sponsor_name']
+ 
+        db.session.commit()
+        #flash("Table Updated Successfully")
+        print("jahuu")
+        return redirect(url_for('Sponsorings'))
+
+#This route is for deleting our employee
+@app.route('/delete_sponsoring/<id>/', methods = ['GET', 'POST'])
+def delete_sponsoring(id):
+    my_data = Sponsoring.query.get(id)
+    db.session.delete(my_data)
+    db.session.commit()
+    #flash("Player Deleted Successfully")
+ 
+    return redirect(url_for('Sponsorings'))

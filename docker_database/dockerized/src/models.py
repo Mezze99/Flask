@@ -103,3 +103,17 @@ class Membership(db.Model):
     
     def __repr__(self):
         return '<Membership %r>' % (self.id)
+
+class Sponsoring(db.Model):
+    __tablename__ = "sponsoring"
+
+    id = db.Column(db.Integer, primary_key=True)
+    start_date = db.Column(db.DateTime(timezone=True))
+    sponsor_name = db.Column(db.String(30))
+
+    def __init__(self, start_date, sponsor_name):
+        self.start_date = start_date
+        self.sponsor_name = sponsor_name
+    
+    def __repr__(self):
+        return '<Sponsoring %r>' % (self.id)
