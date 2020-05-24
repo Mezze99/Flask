@@ -3,7 +3,7 @@ import json
 from flask import request, render_template, redirect, flash, url_for
 
 from . import create_app, database
-from .models import db, Soccer, User, Player
+from .models import db, Soccer, User, Player, Table, Title
 
 app = create_app()
 app.debug = True #receive better error messages
@@ -187,3 +187,100 @@ def delete_player(id):
     #flash("Player Deleted Successfully")
  
     return redirect(url_for('Players'))
+
+#####################################################SVENS MURX#########################################
+@app.route('/table')
+def Tables():
+    all_data = Table.query.all()
+
+    return render_template("table.html", data=all_data), 200
+
+@app.route('/insert_table', methods=['POST'])
+def insert_table():
+ 
+    if request.method == 'POST':
+        position_last_year = request.form['position_last_year']
+        position_this_year = request.form['position_this_year']
+     
+        my_data = Table(position_last_year, position_this_year)
+        db.session.add(my_data)
+        db.session.commit()
+
+        #database.add_instance(model=Soccer, name, email, phone)
+        #flash("Table Inserted Successfully")
+        return redirect(url_for('Tables'))
+
+#this is our update route where we are going to update our employee
+@app.route('/update_table', methods = ['GET', 'POST'])
+def update_table():
+    print("hzurray")
+    if request.method == 'POST':
+        my_data = Table.query.get(request.form.get('id'))
+
+        print('yes')
+        my_data.position_last_year = request.form['position_last_year']
+        my_data.position_this_year = request.form['position_this_year']
+ 
+        db.session.commit()
+        #flash("Table Updated Successfully")
+        print("jahuu")
+        return redirect(url_for('Tables'))
+
+#This route is for deleting our employee
+@app.route('/delete_table/<id>/', methods = ['GET', 'POST'])
+def delete_table(id):
+    my_data = Table.query.get(id)
+    db.session.delete(my_data)
+    db.session.commit()
+    #flash("Player Deleted Successfully")
+ 
+    return redirect(url_for('Tables'))
+
+@app.route('/title')
+def Titles():
+    all_data = Title.query.all()
+
+    return render_template("title.html", data=all_data), 200
+
+@app.route('/insert_title', methods=['POST'])
+def insert_title():
+ 
+    if request.method == 'POST':
+        year = request.form['year']
+        title = request.form['title']
+        winning_team = request.form['winning_team']
+     
+        my_data = Title(year, title, winning_team)
+        db.session.add(my_data)
+        db.session.commit()
+
+        #database.add_instance(model=Soccer, name, email, phone)
+        #flash("Table Inserted Successfully")
+        return redirect(url_for('Titles'))
+
+#this is our update route where we are going to update our employee
+@app.route('/update_title', methods = ['GET', 'POST'])
+def update_title():
+    print("hzurray")
+    if request.method == 'POST':
+        my_data = Title.query.get(request.form.get('year'))
+
+        print('yes')
+        my_data.year = request.form['year']
+        my_data.title = request.form['title']
+        my_data.winning_team = request.form['winning_team']
+ 
+        db.session.commit()
+        #flash("Table Updated Successfully")
+        print("jahuu")
+        return redirect(url_for('Titles'))
+
+#This route is for deleting our employee
+@app.route('/delete_title/<year>/', methods = ['GET', 'POST'])
+def delete_title(year):
+    my_data = Title.query.get(year)
+    db.session.delete(my_data)
+    db.session.commit()
+    #flash("Player Deleted Successfully")
+ 
+    return redirect(url_for('Titles'))

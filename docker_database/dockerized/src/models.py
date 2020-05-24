@@ -54,9 +54,9 @@ class Title(db.Model):
     title = db.Column(db.String(30))
     winning_team = db.Column(db.String(30))
 
-    def __init__(self, title, year, winning_team):
-        self.title = title
+    def __init__(self, year, title, winning_team):
         self.year = year
+        self.title = title
         self.winning_team = winning_team
     
     def __repr__(self):
@@ -66,8 +66,8 @@ class Table(db.Model):
     __tablename__ = "table"
 
     id = db.Column(db.Integer, primary_key=True)
-    position_last_year = db.Column(db.String(30))
-    Position_this_year = db.Column(db.String(30))
+    position_last_year = db.Column(db.Integer)
+    Position_this_year = db.Column(db.Integer)
 
     def __init__(self, position_last_year, position_this_year):
         self.position_last_year = position_last_year
