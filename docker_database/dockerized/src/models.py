@@ -74,6 +74,7 @@ class Title(db.Model):
     title = db.Column(db.String(30))
     winning_team = db.Column(db.String(30))
 
+
     def __init__(self, title, year, winning_team):
         self.title = title
         self.year = year
@@ -86,12 +87,57 @@ class Table(db.Model):
     __tablename__ = "table"
 
     id = db.Column(db.Integer, primary_key=True)
-    position_last_year = db.Column(db.String(30))
-    Position_this_year = db.Column(db.String(30))
+
+    position_last_year = db.Column(db.Integer)
+    Position_this_year = db.Column(db.Integer)
 
     def __init__(self, position_last_year, position_this_year):
         self.position_last_year = position_last_year
         self.position_this_year = position_this_year
 
+
     def __repr__(self):
         return '<Table %r>' % (self.id)
+
+class Coach(db.Model):
+    __tablename__ = "coach"
+
+    id = db.Column(db.Integer, primary_key=True)
+    first_name = db.Column(db.String(30))
+    last_name = db.Column(db.String(30))
+    nationality = db.Column(db.String(30))
+
+    def __init__(self, first_name, last_name, nationality):
+        self.first_name = first_name
+        self.last_name = last_name
+        self.nationality = nationality
+    
+    def __repr__(self):
+        return '<Coach %r>' % (self.id)
+
+class Membership(db.Model):
+    __tablename__ = "membership"
+
+    id = db.Column(db.Integer, primary_key=True)
+    number_members = db.Column(db.Integer)
+
+    def __init__(self, number_members):
+        self.number_members= number_members
+    
+    def __repr__(self):
+        return '<Membership %r>' % (self.id)
+
+class Sponsoring(db.Model):
+    __tablename__ = "sponsoring"
+
+    id = db.Column(db.Integer, primary_key=True)
+    start_date = db.Column(db.DateTime(timezone=True))
+    sponsor_name = db.Column(db.String(30))
+
+    def __init__(self, start_date, sponsor_name):
+        self.start_date = start_date
+        self.sponsor_name = sponsor_name
+    
+    def __repr__(self):
+        return '<Sponsoring %r>' % (self.id)
+
