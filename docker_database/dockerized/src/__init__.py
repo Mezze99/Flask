@@ -1,8 +1,10 @@
 from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 
 from .models import db
 from . import config
-
+from . import initial_insert
 
 def create_app():
     flask_app = Flask(__name__)
