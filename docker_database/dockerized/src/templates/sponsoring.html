@@ -12,6 +12,27 @@
 <div class="container">
     <div class="row">
         <div class="col md-12">
+            
+            Tipp: When a player switches Teams or if you insert a new player:
+            <br/>
+            Select the Team where the player is currently playing at
+            <table class="table">
+            <tr>
+
+                <th>Team ID</th>
+                <th>Team Name</th>
+                
+            </tr>
+
+
+            {% for row in team %}
+            <tr>
+                <td>{{row.id}}</td>
+                <td>{{row.team_name}}</td>
+                
+                <td>
+            {% endfor %}
+            </table>
 
             <div class="jumbotron p-3">
 
@@ -50,9 +71,10 @@
 
                     <tr>
 
-                        <th>ID</th>
+                        <th>Sponsor ID</th>
                         <th>Start Date</th>
                         <th>Sponsor Name</th>
+                        <th>Team ID</th>
                     </tr>
 
 
@@ -61,6 +83,7 @@
                         <td>{{row.id}}</td>
                         <td>{{row.start_date}}</td>
                         <td>{{row.sponsor_name}}</td>
+                        <td>{{row.team_id}}</td>
 
                         <td>
                             <a href="/update_sponsoring/{{row.id}}" class="btn btn-warning btn-xs" data-toggle="modal"
@@ -115,6 +138,17 @@
                                             <input type="hidden" name="id" value="{{row.id}}">
 
                                             <input type="text" class="form-control" name="sponsor_name" value="{{row.sponsor_name}}">
+
+
+                                        </div>
+
+                                        <div class="form-group">
+
+
+                                            <label>Team ID:</label>
+
+                                            <input type="text" class="form-control" name="team_id"
+                                                value="{{row.team_id}}">
 
 
                                         </div>
@@ -189,6 +223,15 @@
 
                                     <label>Sponsor Name:</label>
                                     <input type="text" class="form-control" name="sponsor_name" required="1">
+
+
+                                </div>
+
+                                <div class="form-group">
+
+
+                                    <label>Team ID:</label>
+                                    <input type="text" class="form-control" name="team_id" required="1">
 
 
                                 </div>
