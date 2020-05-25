@@ -30,8 +30,8 @@ class User(db.Model):
 class Player(db.Model):
     __tablename__ = "player"
 
-    id = db.Column(db.Integer, primary_key=True)
-    team_id = db.Column(db.Integer, db.ForeignKey('team.id'), nullable=False, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    team_id = db.Column(db.Integer, db.ForeignKey('team.id'))
 
     fname = db.Column(db.String(128), nullable=False)
     lname = db.Column(db.String(100))

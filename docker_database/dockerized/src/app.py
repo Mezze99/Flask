@@ -153,10 +153,11 @@ def update_player():
         my_data.pl_no = request.form['pl_no']
         my_data.nationality = request.form['nationality']
         my_data.pl_goals = request.form['pl_goals']
+        my_data.team_id = request.form['team_id']
 
  
         db.session.commit()
-        #flash("Player Updated Successfully")
+        flash("Player Updated Successfully")
 
         return redirect(url_for('Players'))
 
@@ -336,8 +337,7 @@ def insert_coach():
         db.session.add(my_data)
         db.session.commit()
 
-        #database.add_instance(model=Soccer, name, email, phone)
-        #flash("Table Inserted Successfully")
+        flash("Table Inserted Successfully")
         return redirect(url_for('Coachs'))
 
 #this is our update route where we are going to update our employee
@@ -346,8 +346,7 @@ def update_coach():
     print("hzurray")
     if request.method == 'POST':
         my_data = Coach.query.get(request.form.get('id'))
-        #print(mydata)
-        #my_data.id = request.form['id']
+       
         my_data.first_name = request.form['first_name']
         my_data.last_name = request.form['last_name']
         my_data.nationality = request.form['nationality']
@@ -363,7 +362,7 @@ def delete_coach(id):
     my_data = Coach.query.get(id)
     db.session.delete(my_data)
     db.session.commit()
-    #flash("Player Deleted Successfully")
+    flash("Player Deleted Successfully")
  
     return redirect(url_for('Coachs'))
 
