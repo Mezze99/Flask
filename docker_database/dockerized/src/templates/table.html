@@ -13,9 +13,29 @@
     <div class="row">
         <div class="col md-12">
 
-            <div class="jumbotron p-3">
 
-                <h2>Manage <b>Table</b> <button type="button" class="btn btn-success float-right" data-toggle="modal"
+                Tipp: Here are all listed teams with it's ID. <a href="/team">Edit TEAM</a> Table first.
+                <br />
+
+                <table class="table">
+                    <tr>
+                        <th>Team ID</th>
+                        <th>Team Name</th>
+
+                    </tr>
+
+
+                    {% for row in team_data %}
+                    <tr>
+                        <td>{{row.id}}</td>
+                        <td>{{row.team_name}}</td>
+                        
+                    </tr>
+                    {% endfor %}
+                </table>
+                <div class="jumbotron p-3">
+
+                <h2>Manage <b>Table</b> <button type="button" class="btn btn-link float-right" data-toggle="modal"
                         data-target="#mymodal">Add New Table</button> </h2>
 
 
@@ -46,11 +66,11 @@
                 {% endwith %}
 
 
-                <table class="table table-hover table-dark">
+                <table class="table table-hover table-default">
 
                     <tr>
 
-                        <th>ID</th>
+                        <th>Team ID</th>
                         <th>Position Last Year</th>
                         <th>Position This Year</th>
 
@@ -64,7 +84,7 @@
                         <td>{{row.position_this_year}}</td>
 
                         <td>
-                            <a href="/update_table/{{row.id}}" class="btn btn-warning btn-xs" data-toggle="modal"
+                            <a href="/update_table/{{row.id}}" class="btn btn-primary btn-xs" data-toggle="modal"
                                 data-target="#modaledit{{row.id}}">Edit</a>
                             <a href="/delete_table/{{row.id}}" class="btn btn-danger btn-xs"
                                 onclick="return confirm('Are You Sure To Delete ?')">Delete</a>

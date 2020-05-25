@@ -1,67 +1,77 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Home - SQL Queries</h1>
-    Trigger SQL queries.
-
-    <!-- This is a button for SQL Query -->
-    <div>
+<h1>Home - SQL Queries</h1>
+Trigger SQL queries.
+<br />
+<hr/>
+<br />
+<!-- This is a button for SQL Query -->
+<div>
     <a href="{{ url_for('query_goalgetter') }}" class="btn btn-warning btn-xs">SQL Query - Top Goalgetter</a>
-    </div>
-<!-- ########################################## -->
-<br/>
-    TODO: Transaction ?! -> inform + implement in sql flask-alchemy
-    <br/>
-    TODO: change color sheme to user/employee table
-    <br/>
-    TODO: initial insert function
-    <br/>
-    TODO query by Player name
-    <br/>
-    TODO query by Team with most goals this season
-    <br/>
-    TODO query by ...
-    <br/>
-<!-- ########################################## -->
-<br/>
-    <form method="GET">
+</div>
+<br />
+<div>Query Player by lastname <br> (check spelling)
+    <form action="{{ url_for('run') }}" method="post">
         <div>
-            <input type="submit" name="submit_button" value="Do Something">
+            <input type="text" name="submit_player_name">
+            <input type="submit" class="btn btn-warning btn-xs" value="Query">
         </div>
         <!-- <div>
             <button type=submit></button>
         </div> -->
-</form>
-    {% for post in posts %}
-    <div><p>{{ post.author.username }} says: <b>{{ post.body }}</b></p></div>
-    {% endfor %}
+    </form>
+</div>
+
+<!-- ########################################## -->
+<br />
+TODO: Transaction ?! -> inform + implement in sql flask-alchemy
+<br />
+TODO: change color sheme to user/employee table
+<br />
+TODO: initial insert function
+<br />
+Done: query by Player name
+<br />
+TODO query by Team with most goals this season
+<br />
+TODO query by ...
+<br />
+<!-- ########################################## -->
+
+<br />
+
+{% for post in posts %}
+<div>
+    <p>{{ post.author.username }} says: <b>{{ post.body }}</b></p>
+</div>
+{% endfor %}
 
 
-    <!-- TODO: To be included: View of current table -->
-    <div>
-        TODO: To be included: View of current "Tabelle"
+<!-- TODO: To be included: View of current table -->
+<div>
+    TODO: To be included: View of current "Tabelle" <br>
+    <h2> View of all Teams in DB </h2>
     <table class="table table-hover table-active">
-    <tr>
+        <tr>
+        <tr>
 
-        <th>ID</th>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Phone</th>
-        <th>Action</th>
+            <th>ID</th>
+            <th>Team Name</th>
+            <th>City</th>
 
-    </tr>
+        </tr>
 
 
-   {% for row in employees %}
-    <tr>
-        <td>{{row.id}}</td>
-        <td>{{row.name}}</td>
-        <td>{{row.email}}</td>
-        <td>{{row.phone}}</td>
-    </tr>
-    {% endfor %}
+        {% for row in data %}
+        <tr>
+            <td>{{row.id}}</td>
+            <td>{{row.team_name}}</td>
+            <td>{{row.city}}</td>
+        </tr>
+        {% endfor %}
 
-</table>
+    </table>
 
 </div>
 {% endblock %}

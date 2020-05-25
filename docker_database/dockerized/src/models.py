@@ -147,7 +147,7 @@ class Sponsoring(db.Model):
     def __init__(self, start_date, sponsor_name, team_id):
         self.start_date = start_date
         self.sponsor_name = sponsor_name
-        self.id = id
+        self.team_id = team_id
     
     def __repr__(self):
         return '<Sponsoring %r>' % (self.id)

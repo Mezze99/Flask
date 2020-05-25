@@ -39,7 +39,7 @@
 
             <div class="jumbotron p-3">
 
-                <h2>Manage <b>Player</b> <button type="button" class="btn btn-success float-right" data-toggle="modal"
+                <h2>Manage <b>Player</b> <button type="button" class="btn btn-link float-right" data-toggle="modal"
                         data-target="#mymodal">Add New Player</button> </h2>
 
 
@@ -70,7 +70,7 @@
                 {% endwith %}
 
 
-                <table class="table table-hover table-dark">
+                <table class="table table-default">
 
                     <tr>
 
@@ -96,7 +96,7 @@
                         <td>{{row.team_id}}</td>
 
                         <td>
-                            <a href="/update_player/{{row.id}}" class="btn btn-warning btn-xs" data-toggle="modal"
+                            <a href="/update_player/{{row.id}}" class="btn btn-primary btn-xs" data-toggle="modal"
                                 data-target="#modaledit{{row.id}}">Edit</a>
                             <a href="/delete_player/{{row.id}}" class="btn btn-danger btn-xs"
                                 onclick="return confirm('Are You Sure To Delete ?')">Delete</a>

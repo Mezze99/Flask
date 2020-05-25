@@ -11,51 +11,30 @@ app.debug = True #receive better error messages
 # Test database connection
 @app.route('/', methods=['GET'])
 def fetch():
-    # cats = database.get_all(Soccer)
-    # all_cats = []
-    # for cat in cats:
-    #     new_cat = {
-    #         "id": cat.id,
-    #         "name": cat.name,
-    #         "price": cat.price,
-    #         "breed": cat.breed
-    #     }
-
-    #     all_cats.append(new_cat)
-    return render_template('home.html'), 200
+        return render_template('home.html'), 200
 
 ###############################################################################################################
-@app.route('/run', methods=['GET'])
+@app.route('/run', methods=['GET', 'POST'])
 def run():
-    # session = Session()
-    all_users = []
-    userss = db.session.query(User).filter_by(name="Success").all()
-    for u in userss:
-        all_users.append(u.id)
-    # session.close()
-    return render_template('show_user.html', user=all_users)
+    if request.method == 'POST':
+        name = request.form["submit_player_name"]
+        #all_users = []
+        data = db.session.query(Player).filter_by(lname=name).all()
+        # for u in userss:
+        #     all_users.append(u.id)
+    return render_template('show_user.html', data=data, name=name)
 
 @app.route('/query_goalgetter', methods=['GET'])
 def query_goalgetter():
-    # session = Session()
-    all_users = []
-    x = 0
     userss = db.session.query(Player).order_by(Player.pl_goals.desc()).all()
-    # for u in userss:
-    #     all_users.append(u.fname)
-        # goals.append(u.)
-        # print(all_users)
-        # x+=1
-        # x_list
-    # session.close()
     return render_template('query_goalgetter.html', user=userss)
 
 ###############################################################################################################
 @app.route('/index')
 def Index2():
-    all_data = Player.query.all()
+    all_data = Team.query.all()
 
-    return render_template("index.html", user=all_data), 200
+    return render_template("index.html", data=all_data), 200
 
 
 @app.route('/index2')
@@ -166,7 +145,7 @@ def delete_player(id):
     my_data = Player.query.get(id)
     db.session.delete(my_data)
     db.session.commit()
-    #flash("Player Deleted Successfully")
+    flash("Player Deleted Successfully")
  
     return redirect(url_for('Players'))
 
@@ -192,7 +171,7 @@ def insert_team():
         db.session.commit()
  
         #database.add_instance(model=Soccer, name, email, phone)
-        flash("Player Inserted Successfully")
+        flash("Team Inserted Successfully")
         return redirect(url_for('Teams'))
 
 #this is our update route where we are going to update our employee
@@ -206,7 +185,7 @@ def update_team():
         my_data.city = request.form['city']
  
         db.session.commit()
-        #flash("Player Updated Successfully")
+        flash("Team Updated Successfully")
 
         return redirect(url_for('Teams'))
 
@@ -216,7 +195,7 @@ def delete_team(id):
     my_data = Team.query.get(id)
     db.session.delete(my_data)
     db.session.commit()
-    # flash("Player Deleted Successfully")
+    flash("Team Deleted Successfully")
 
     return redirect(url_for('Teams'))
 
@@ -224,8 +203,8 @@ def delete_team(id):
 @app.route('/table')
 def Tables():
     all_data = Table.query.all()
-
-    return render_template("table.html", data=all_data), 200
+    team_data = Team.query.all()
+    return render_template("table.html", data=all_data, team_data=team_data), 200
 
 @app.route('/insert_table', methods=['POST'])
 def insert_table():
