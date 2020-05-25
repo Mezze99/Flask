@@ -61,7 +61,7 @@
                     <tr>
                         <td>{{row.id}}</td>
                         <td>{{row.position_last_year}}</td>
-                        <td>{{row.Position_this_year}}</td>
+                        <td>{{row.position_this_year}}</td>
 
                         <td>
                             <a href="/update_table/{{row.id}}" class="btn btn-warning btn-xs" data-toggle="modal"
@@ -104,7 +104,8 @@
                                             <label>Positon Last Year:</label>
                                             <input type="hidden" name="id" value="{{row.id}}">
 
-                                            <input type="text" class="form-control" name="position_last_year" value="{{row.position_last_year}}">
+                                            <input type="text" class="form-control" name="position_last_year"
+                                                value="{{row.position_last_year}}">
 
 
                                         </div>
@@ -116,7 +117,8 @@
 
                                             <label>Position This Year:</label>
 
-                                            <input type="text" class="form-control" name="position_this_year" value="{{row.position_this_year}}">
+                                            <input type="text" class="form-control" name="position_this_year"
+                                                value="{{row.position_this_year}}">
 
 
                                         </div>
@@ -177,6 +179,14 @@
 
                             <form action="{{url_for('insert_table')}}" method="POST">
 
+
+                                <div class="form-group">
+
+                                    <label>Team ID:</label>
+                                    <input type="text" class="form-control" name="id" required="1">
+
+
+                                </div>
 
                                 <div class="form-group">
 

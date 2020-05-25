@@ -12,6 +12,24 @@
 <div class="container">
     <div class="row">
         <div class="col md-12">
+            
+            Tipp: Here are all listed teams. <a href="/team" >Edit TEAM</a> Table first, if a team is missing
+            <br/>
+            Edit the winning team here:
+
+            <table class="table">
+            <tr>
+                <th>Team Name</th>
+                
+            </tr>
+
+
+            {% for row in team %}
+            <tr>
+               <td>{{row.team_name}}</td>
+            </tr>
+            {% endfor %}
+            </table>
 
             <div class="jumbotron p-3">
 
@@ -50,8 +68,9 @@
 
                     <tr>
 
+                        
+                        <th>No. of Titles</th>
                         <th>Year</th>
-                        <th>Title</th>
                         <th>Winning Team</th>
 
                     </tr>

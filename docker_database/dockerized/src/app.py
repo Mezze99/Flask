@@ -233,8 +233,10 @@ def insert_table():
     if request.method == 'POST':
         position_last_year = request.form['position_last_year']
         position_this_year = request.form['position_this_year']
+        idx = request.form['id']
+        
      
-        my_data = Table(position_last_year, position_this_year)
+        my_data = Table(position_last_year, position_this_year, idx)
         db.session.add(my_data)
         db.session.commit()
 
@@ -264,15 +266,16 @@ def delete_table(id):
     my_data = Table.query.get(id)
     db.session.delete(my_data)
     db.session.commit()
-    #flash("Player Deleted Successfully")
+    flash("Player Deleted Successfully")
  
     return redirect(url_for('Tables'))
 
 @app.route('/title')
 def Titles():
     all_data = Title.query.all()
+    team_data = Team.query.all()
 
-    return render_template("title.html", data=all_data), 200
+    return render_template("title.html", data=all_data, team=team_data), 200
 
 @app.route('/insert_title', methods=['POST'])
 def insert_title():
@@ -287,24 +290,21 @@ def insert_title():
         db.session.commit()
 
         #database.add_instance(model=Soccer, name, email, phone)
-        #flash("Table Inserted Successfully")
+        flash("Table Inserted Successfully")
         return redirect(url_for('Titles'))
 
 #this is our update route where we are going to update our employee
 @app.route('/update_title', methods = ['GET', 'POST'])
 def update_title():
-    print("hzurray")
     if request.method == 'POST':
         my_data = Title.query.get(request.form.get('year'))
 
-        print('yes')
         my_data.year = request.form['year']
         my_data.title = request.form['title']
         my_data.winning_team = request.form['winning_team']
  
         db.session.commit()
-        #flash("Table Updated Successfully")
-        print("jahuu")
+        flash("Table Updated Successfully")
         return redirect(url_for('Titles'))
 
 #This route is for deleting our employee
@@ -313,7 +313,7 @@ def delete_title(year):
     my_data = Title.query.get(year)
     db.session.delete(my_data)
     db.session.commit()
-    #flash("Player Deleted Successfully")
+    flash("Player Deleted Successfully")
  
     return redirect(url_for('Titles'))
 

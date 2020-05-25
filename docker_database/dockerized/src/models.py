@@ -78,7 +78,6 @@ class Title(db.Model):
 
     year = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(30))
-    #winning_team = db.Column(db.String(30))
     winning_team=db.Column(db.String(128), db.ForeignKey('team.team_name'), nullable=False)
 
     def __init__(self, title, year, winning_team):
@@ -92,14 +91,15 @@ class Title(db.Model):
 class Table(db.Model):
     __tablename__ = "table"
 
-    id = db.Column(db.Integer, db.ForeignKey('team.id'), primary_key=True, nullable=False)
+    id = db.Column(db.Integer, db.ForeignKey('team.id'), primary_key=True)
 
     position_last_year = db.Column(db.Integer)
-    Position_this_year = db.Column(db.Integer)
+    position_this_year = db.Column(db.Integer)
 
-    def __init__(self, position_last_year, position_this_year):
+    def __init__(self, position_last_year, position_this_year, id):
         self.position_last_year = position_last_year
         self.position_this_year = position_this_year
+        self.id = id
 
 
     def __repr__(self):
