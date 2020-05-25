@@ -1,44 +1,31 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Hi,!</h1>
-    This is index page.
+    <h1>Player with most goals</h1>
+    Your query was succesfully executed.
     {% for post in posts %}
     <div><p>{{ post.author.username }} says: <b>{{ post.body }}</b></p></div>
     {% endfor %}
     <div>
         <div>
+            <table class="table">
+            <tr>
+
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>No. of Goals</th>
+
+            </tr>
+        
             {% for u in user %}
-            <div>
-           {{ u }}
-           {{ user }}
-            </div>
+            <tr>
+                    <td>{{ u.fname }}</td>
+                    <td> {{ u.lname }}</td>
+                    <td>{{ u.pl_goals }}</td>
+                </tr>
             {% endfor %}
-            
-           <div class="modal-footer">
+            </table>
 
          </div>
         </div>
-    <!-- <table class="table table-hover table-active">
-    <tr>
-
-        <th>ID</th>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Phone</th>
-        <th>Action</th>
-
-    </tr>
-
-
-   {% for row in employee %}
-    <tr>
-        <td>{{row.id}}</td>
-        <td>{{row.name}}</td>
-        <td>{{row.email}}</td>
-        <td>{{row.phone}}</td>
-    </tr>
-    {% endfor %}
-</table> -->
-</div>
 {% endblock %}

@@ -8,6 +8,6 @@ database = os.environ.get('POSTGRES_DB')
 port = os.environ.get('POSTGRES_PORT')
 
 # DATABASE_CONNECTION_URI = f'postgresql+psycopg2://{user}:{password}@{host}:{port}/{database}'
-DATABASE_CONNECTION_URI = "postgresql+psycopg2://postgres:alaba1@localhost:5432/soccer"
+DATABASE_CONNECTION_URI = "postgresql+psycopg2://postgres:Sql1234@localhost:5432/soccer"
 
 SECRET_KEY = os.environ.get('SECRET_KEY') or 'you-will-never-guess'

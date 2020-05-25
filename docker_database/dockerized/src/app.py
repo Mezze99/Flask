@@ -3,7 +3,7 @@ import json
 from flask import request, render_template, redirect, flash, url_for
 
 from . import create_app, database
-from .models import db, Soccer, User, Player, Table, Title, Coach, Membership, Sponsoring
+from .models import db, Soccer, User, Player, Table, Title, Coach, Membership, Sponsoring, Team
 
 app = create_app()
 app.debug = True #receive better error messages
@@ -11,19 +11,20 @@ app.debug = True #receive better error messages
 # Test database connection
 @app.route('/', methods=['GET'])
 def fetch():
-    cats = database.get_all(Soccer)
-    all_cats = []
-    for cat in cats:
-        new_cat = {
-            "id": cat.id,
-            "name": cat.name,
-            "price": cat.price,
-            "breed": cat.breed
-        }
+    # cats = database.get_all(Soccer)
+    # all_cats = []
+    # for cat in cats:
+    #     new_cat = {
+    #         "id": cat.id,
+    #         "name": cat.name,
+    #         "price": cat.price,
+    #         "breed": cat.breed
+    #     }
 
-        all_cats.append(new_cat)
-    return json.dumps(all_cats), 200
+    #     all_cats.append(new_cat)
+    return render_template('home.html'), 200
 
+###############################################################################################################
 @app.route('/run', methods=['GET'])
 def run():
     # session = Session()
@@ -38,41 +39,18 @@ def run():
 def query_goalgetter():
     # session = Session()
     all_users = []
-    #x = 0
-    userss = db.session.query(Player).order_by(Player.pl_goals).all()
-    for u in userss:
-        all_users.append(u.fname)
-        print(all_users)
+    x = 0
+    userss = db.session.query(Player).order_by(Player.pl_goals.desc()).all()
+    # for u in userss:
+    #     all_users.append(u.fname)
+        # goals.append(u.)
+        # print(all_users)
         # x+=1
         # x_list
     # session.close()
-    return render_template('query_goalgetter.html', user=all_users)
+    return render_template('query_goalgetter.html', user=userss)
 
-
-@app.route('/add', methods=['POST'])
-def add():
-    data = request.get_json()
-    name = data['name']
-    price = data['price']
-    breed = data['breed']
-
-    database.add_instance(Soccer, name=name, price=price, breed=breed)
-    return json.dumps("Added"), 200
-
-
-@app.route('/remove/<cat_id>', methods=['DELETE'])
-def remove(cat_id):
-    database.delete_instance(Soccer, id=cat_id)
-    return json.dumps("Deleted"), 200
-
-
-@app.route('/edit/<cat_id>', methods=['PATCH'])
-def edit(cat_id):
-    data = request.get_json()
-    new_price = data['price']
-    database.edit_instance(Soccer, id=cat_id, price=new_price)
-    return json.dumps("Edited"), 200
-
+###############################################################################################################
 @app.route('/index')
 def Index2():
     all_data = Player.query.all()
@@ -130,13 +108,16 @@ def delete(id):
  
     return redirect(url_for('Index'))
 
-# query on all our employee data
+#################################################################################################################
+
+# query on all our Player data
 #a = '/player'
 @app.route('/player')
 def Players():
     all_data = Player.query.all()
+    team_data = Team.query.all()
 
-    return render_template("player.html", employees=all_data), 200
+    return render_template("player.html", employees=all_data, team=team_data), 200
 
 @app.route('/insert_player', methods=['POST'])
 def insert_player():
@@ -148,9 +129,10 @@ def insert_player():
         pl_no = request.form['pl_no']
         nationality = request.form['nationality']
         pl_goals = request.form['pl_goals']
+        team_id = request.form['team_id']
      
  
-        my_data = Player(fname, lname, pl_no, nationality, pl_goals)
+        my_data = Player(fname, lname, pl_no, nationality, pl_goals, team_id)
         db.session.add(my_data)
         db.session.commit()
  
@@ -161,7 +143,7 @@ def insert_player():
 #this is our update route where we are going to update our employee
 @app.route('/update_player', methods = ['GET', 'POST'])
 def update_player():
-    print("hzurray")
+
     if request.method == 'POST':
         my_data = Player.query.get(request.form.get('id'))
         #fname, lname, pl_no, nationality, 
@@ -175,7 +157,7 @@ def update_player():
  
         db.session.commit()
         #flash("Player Updated Successfully")
-        print("jahuu")
+
         return redirect(url_for('Players'))
 
 #This route is for deleting our employee
@@ -187,6 +169,56 @@ def delete_player(id):
     #flash("Player Deleted Successfully")
  
     return redirect(url_for('Players'))
+
+###############################################################################################################
+
+# query on all our Team data
+@app.route('/team')
+def Teams():
+    all_data = Team.query.all()
+
+    return render_template("team.html", employees=all_data), 200
+
+@app.route('/insert_team', methods=['POST'])
+def insert_team():
+
+    if request.method == 'POST':
+        
+        team_name = request.form['team_name']
+        city = request.form['city']
+     
+        my_data = Team(team_name, city)
+        db.session.add(my_data)
+        db.session.commit()
+ 
+        #database.add_instance(model=Soccer, name, email, phone)
+        flash("Player Inserted Successfully")
+        return redirect(url_for('Teams'))
+
+#this is our update route where we are going to update our employee
+@app.route('/update_team', methods = ['GET', 'POST'])
+def update_team():
+
+    if request.method == 'POST':
+        my_data = Team.query.get(request.form.get('id'))
+    
+        my_data.team_name = request.form['team_name']
+        my_data.city = request.form['city']
+ 
+        db.session.commit()
+        #flash("Player Updated Successfully")
+
+        return redirect(url_for('Teams'))
+
+#This route is for deleting our employee
+@app.route('/delete_team/<id>/', methods = ['GET', 'POST'])
+def delete_team(id):
+    my_data = Team.query.get(id)
+    db.session.delete(my_data)
+    db.session.commit()
+    # flash("Player Deleted Successfully")
+
+    return redirect(url_for('Teams'))
 
 #####################################################SVENS MURX#########################################
 @app.route('/table')
@@ -423,5 +455,5 @@ def delete_sponsoring(id):
     db.session.delete(my_data)
     db.session.commit()
     #flash("Player Deleted Successfully")
- 
+
     return redirect(url_for('Sponsorings'))

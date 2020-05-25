@@ -9,9 +9,33 @@
 
 {% block content %}
 
+
+
+
 <div class="container">
     <div class="row">
         <div class="col md-12">
+            Tipp: When a player switches Teams or if you insert a new player:
+            <br/>
+            Select the Team where the player is currently playing at
+            <table class="table">
+            <tr>
+
+                <th>Team ID</th>
+                <th>Team Name</th>
+                
+            </tr>
+
+
+            {% for row in team %}
+            <tr>
+                <td>{{row.id}}</td>
+                <td>{{row.team_name}}</td>
+                
+                <td>
+            {% endfor %}
+            </table>
+
 
             <div class="jumbotron p-3">
 
@@ -56,6 +80,7 @@
                         <th>Number</th>
                         <th>Goals</th>
                         <th>Nationality</th>
+                        <th>Team ID</th>
 
                     </tr>
 
@@ -68,6 +93,7 @@
                         <td>{{row.pl_no}}</td>
                         <td>{{row.pl_goals}}</td>
                         <td>{{row.nationality}}</td>
+                        <td>{{row.team_id}}</td>
 
                         <td>
                             <a href="/update_player/{{row.id}}" class="btn btn-warning btn-xs" data-toggle="modal"
@@ -264,6 +290,14 @@
 
                                 </div>
 
+                                <div class="form-group">
+
+
+                                    <label>Team ID:</label>
+                                    <input type="text" class="form-control" name="team_id" required="1">
+
+
+                                </div>
 
 
                                 <div class="form-group">
