@@ -330,8 +330,9 @@ def insert_coach():
         first_name = request.form['first_name']
         last_name = request.form['last_name']
         nationality = request.form['nationality']
+        idx = request.form['id']
      
-        my_data = Coach(first_name, last_name, nationality)
+        my_data = Coach(idx, first_name, last_name, nationality)
         db.session.add(my_data)
         db.session.commit()
 
@@ -345,15 +346,15 @@ def update_coach():
     print("hzurray")
     if request.method == 'POST':
         my_data = Coach.query.get(request.form.get('id'))
-
-        print('yes')
+        #print(mydata)
+        #my_data.id = request.form['id']
         my_data.first_name = request.form['first_name']
         my_data.last_name = request.form['last_name']
         my_data.nationality = request.form['nationality']
  
         db.session.commit()
-        #flash("Table Updated Successfully")
-        print("jahuu")
+        flash("Table Updated Successfully")
+     
         return redirect(url_for('Coachs'))
 
 #This route is for deleting our employee

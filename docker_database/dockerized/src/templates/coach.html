@@ -99,6 +99,7 @@
 
                                     <form action="{{ url_for('update_coach') }}" method="POST">
 
+                                
 
                                         <div class="form-group">
 
@@ -193,6 +194,13 @@
 
                             <form action="{{url_for('insert_coach')}}" method="POST">
 
+                                <div class="form-group">
+
+                                    <label>Team ID:</label>
+                                    <input type="text" class="form-control" name="id" required="1">
+
+
+                                </div>
 
                                 <div class="form-group">
 
