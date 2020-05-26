@@ -71,8 +71,11 @@
                     <tr>
 
                         <th>Team ID</th>
-                        <th>Position Last Year</th>
-                        <th>Position This Year</th>
+                        <th>Matches</th>
+                        <th>Wins</th>
+                        <th>Remis</th>
+                        <th>Defeats</th>
+                        <th>Points</th>
 
                     </tr>
 
@@ -80,8 +83,11 @@
                     {% for row in data %}
                     <tr>
                         <td>{{row.id}}</td>
-                        <td>{{row.position_last_year}}</td>
-                        <td>{{row.position_this_year}}</td>
+                        <td>{{row.matches}}</td>
+                        <td>{{row.wins}}</td>
+                        <td>{{row.remis}}</td>
+                        <td>{{row.defeats}}</td>
+                        <td>{{row.points}}</td>
 
                         <td>
                             <a href="/update_table/{{row.id}}" class="btn btn-primary btn-xs" data-toggle="modal"
@@ -121,11 +127,11 @@
                                         <div class="form-group">
 
 
-                                            <label>Positon Last Year:</label>
+                                            <label>Matches:</label>
                                             <input type="hidden" name="id" value="{{row.id}}">
 
-                                            <input type="text" class="form-control" name="position_last_year"
-                                                value="{{row.position_last_year}}">
+                                            <input type="text" class="form-control" name="matches"
+                                                value="{{row.matches}}">
 
 
                                         </div>
@@ -135,11 +141,43 @@
                                         <div class="form-group">
 
 
-                                            <label>Position This Year:</label>
+                                            <label>Wins:</label>
 
-                                            <input type="text" class="form-control" name="position_this_year"
-                                                value="{{row.position_this_year}}">
+                                            <input type="text" class="form-control" name="wins"
+                                                value="{{row.wins}}">
 
+
+                                        </div>
+
+                                        <div class="form-group">
+
+
+                                            <label>Remis:</label>
+
+                                            <input type="text" class="form-control" name="remis"
+                                                value="{{row.remis}}">
+
+
+                                        </div>
+
+                                        <div class="form-group">
+
+
+                                            <label>Defeats:</label>
+
+                                            <input type="text" class="form-control" name="defeats"
+                                                value="{{row.defeats}}">
+
+
+                                        </div>
+
+                                        <div class="form-group">
+
+
+                                            <label>Points:</label>
+
+                                            <input type="text" class="form-control" name="points"
+                                                value="{{row.points}}">
 
                                         </div>
 
@@ -210,8 +248,8 @@
 
                                 <div class="form-group">
 
-                                    <label>Position Last Year:</label>
-                                    <input type="text" class="form-control" name="position_last_year" required="1">
+                                    <label>Matches:</label>
+                                    <input type="text" class="form-control" name="matches" required="1">
 
 
                                 </div>
@@ -220,12 +258,35 @@
                                 <div class="form-group">
 
 
-                                    <label>Position This Year:</label>
-                                    <input type="text" class="form-control" name="position_this_year" required="1">
+                                    <label>Wins:</label>
+                                    <input type="text" class="form-control" name="wins" required="1">
 
 
                                 </div>
+                                <div class="form-group">
 
+
+                                    <label>Remis:</label>
+                                    <input type="text" class="form-control" name="Remis" required="1">
+
+
+                                </div>
+                                <div class="form-group">
+
+
+                                    <label>Defeats:</label>
+                                    <input type="text" class="form-control" name="defeats" required="1">
+
+
+                                </div>
+                                <div class="form-group">
+
+
+                                    <label>Points:</label>
+                                    <input type="text" class="form-control" name="points" required="1">
+
+
+                                </div>
 
 
                                 <div class="form-group">

@@ -75,6 +75,7 @@
                         <th>Start Date</th>
                         <th>Sponsor Name</th>
                         <th>Team ID</th>
+                        <th>Contract Volume in Million €</th>
                     </tr>
 
 
@@ -84,6 +85,7 @@
                         <td>{{row.start_date}}</td>
                         <td>{{row.sponsor_name}}</td>
                         <td>{{row.team_id}}</td>
+                        <td>{{row.contract}}</td>
 
                         <td>
                             <a href="/update_sponsoring/{{row.id}}" class="btn btn-primary btn-xs" data-toggle="modal"
@@ -149,6 +151,17 @@
 
                                             <input type="text" class="form-control" name="team_id"
                                                 value="{{row.team_id}}">
+
+
+                                        </div>
+
+                                        <div class="form-group">
+
+
+                                            <label>Contract Volume in Million €:</label>
+
+                                            <input type="text" class="form-control" name="contract"
+                                                value="{{row.contract}}">
 
 
                                         </div>
@@ -232,6 +245,15 @@
 
                                     <label>Team ID:</label>
                                     <input type="text" class="form-control" name="team_id" required="1">
+
+
+                                </div>
+
+                                <div class="form-group">
+
+
+                                    <label>Contract Volume in €:</label>
+                                    <input type="text" class="form-control" name="contract" required="1">
 
 
                                 </div>
