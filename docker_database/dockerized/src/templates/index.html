@@ -15,71 +15,16 @@ Trigger SQL queries.
     <a href="{{ url_for('query_teamgoals') }}" class="btn btn-warning btn-xs">SQL Query - Top Teams by Goals</a>
 </div>
 <br />
+<div>
+    <a href="{{ url_for('query_table') }}" class="btn btn-warning btn-xs">SQL Query - CurrentTable</a>
+</div>
+<br />
 <div>Query Player by lastname <br> (check spelling)
     <form action="{{ url_for('run') }}" method="post">
         <div>
             <input type="text" name="submit_player_name">
             <input type="submit" class="btn btn-warning btn-xs" value="Query">
         </div>
-        <!-- <div>
-            <button type=submit></button>
-        </div> -->
     </form>
-</div>
-
-<!-- ########################################## -->
-<br />
-TODO: Transaction ?! -> inform + implement in sql flask-alchemy
-<br />
-Dine: change color sheme to user/employee table
-<br />
-TODO: initial insert function
-<br />
-Done: query by Player name
-<br />
-TODO query by Team with most goals this season
-<br />
-TODO query by ...
-<br />
-TODO: query by nationality and goals
-<br />
-TODO query by Team mit meisten Titel
-<br />
-<!-- ########################################## -->
-
-<br />
-
-{% for post in posts %}
-<div>
-    <p>{{ post.author.username }} says: <b>{{ post.body }}</b></p>
-</div>
-{% endfor %}
-
-
-<!-- TODO: To be included: View of current table -->
-<div>
-    TODO: To be included: View of current "Tabelle" <br>
-    <h2> View of all Teams in DB </h2>
-    <table class="table table-hover table-active">
-        <tr>
-        <tr>
-
-            <th>ID</th>
-            <th>Team Name</th>
-            <th>City</th>
-
-        </tr>
-
-
-        {% for row in data %}
-        <tr>
-            <td>{{row.id}}</td>
-            <td>{{row.team_name}}</td>
-            <td>{{row.city}}</td>
-        </tr>
-        {% endfor %}
-
-    </table>
-
 </div>
 {% endblock %}

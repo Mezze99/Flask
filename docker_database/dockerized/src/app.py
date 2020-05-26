@@ -8,10 +8,27 @@ from .models import db, Soccer, User, Player, Table, Title, Coach, Membership, S
 app = create_app()
 app.debug = True #receive better error messages
 
+
+###############################################################################################################
+#MAIN PAGES#
+###############################################################################################################
 # Test database connection
+# render Startpage
 @app.route('/', methods=['GET'])
 def fetch():
-        return render_template('home.html'), 200
+        team_data = Team.query.all()
+        return render_template('home.html', data=team_data), 200
+
+# render CRUD
+@app.route('/crud', methods=['GET'])
+def crud():
+        return render_template('crud.html'), 200
+
+#render Query Index Page
+@app.route('/index')
+def Index2():
+    return render_template("index.html"), 200
+
 
 ###############################################################################################################
 #QUERIES#
@@ -37,30 +54,27 @@ def query_goalgetter():
 #Query Teams by number of goals
 @app.route('/query_teamgoals', methods=['GET'])
 def query_teamgoals():
-    #myquery=1
-    # subq = db.session.query(Team)\
-    #     .join(Player, Team.id==Player.team_id).subquery()
-    # q = db.session.query(subq, db.func.sum(subq.c.pl_goals)).group_by(subq.c.id)
-
+    
     last_orders = db.session.query(
     Player.team_id, db.func.sum(Player.pl_goals).label('goals')
     ).group_by(Player.team_id).subquery()
     query = Team.query.join(
-    last_orders, Team.id == last_orders.c.team_id
-).add_columns(Team.id, Team.team_name, last_orders.c.goals).order_by(last_orders.c.goals.desc(), )
-    # myquery = db.session.query(Team.id)\
-    #     .join(Player, Team.id==Player.team_id)\
-    #     .groupby(Team.id)\
-    #     .having(func.sum(Player.pl_goals).label('total'))
+        last_orders, Team.id == last_orders.c.team_id
+    ).add_columns(Team.id, Team.team_name, last_orders.c.goals).order_by(last_orders.c.goals.desc(), )
+
     return render_template('query_teamgoals.html', user=query)
 
+#Query Teams by number of goals
+@app.route('/query_table', methods=['GET'])
+def query_table():
+    
+    query = Team.query.join(
+        Table, Team.id == Table.id
+    ).add_columns(Team.team_name, Table.matches, Table.wins, Table.remis, Table.defeats, Table.points).order_by(Table.points.desc(), )
 
+    return render_template('query_table.html', user=query)
 ###############################################################################################################
-@app.route('/index')
-def Index2():
-    all_data = Team.query.all()
 
-    return render_template("index.html", data=all_data), 200
 
 
 @app.route('/index2')
