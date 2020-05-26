@@ -14,6 +14,10 @@ def fetch():
         return render_template('home.html'), 200
 
 ###############################################################################################################
+#QUERIES#
+###############################################################################################################
+
+#Query by Player name (with input)
 @app.route('/run', methods=['GET', 'POST'])
 def run():
     if request.method == 'POST':
@@ -24,10 +28,22 @@ def run():
         #     all_users.append(u.id)
     return render_template('show_user.html', data=data, name=name)
 
+#Query Player by goals (ordered)
 @app.route('/query_goalgetter', methods=['GET'])
 def query_goalgetter():
     userss = db.session.query(Player).order_by(Player.pl_goals.desc()).all()
     return render_template('query_goalgetter.html', user=userss)
+
+#Query Teams by number of goals
+@app.route('/query_teamgoals', methods=['GET'])
+def query_teamgoals():
+    
+    myquery = Team.query\
+        .join(Player, Team.id==Player.team_id)\
+        .groupby(Team.id)\
+        .func.sum(Player.pl_goals).label('total')
+    return render_template('query_goalgetter.html', user=myquery)
+
 
 ###############################################################################################################
 @app.route('/index')
