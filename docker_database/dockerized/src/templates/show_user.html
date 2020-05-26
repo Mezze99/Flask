@@ -1,44 +1,37 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Hi, {{ user.username }}!</h1>
-    This is index page.
+    <h1>Query by lastname: {{ name }}</h1>
+    Your query has been successful.
     {% for post in posts %}
     <div><p>{{ post.author.username }} says: <b>{{ post.body }}</b></p></div>
     {% endfor %}
     <div>
-        <div>
-            {% for u in user %}
-            <div>
-           {{ u }}
-           {{ user }}
-            </div>
-            {% endfor %}
-            
-           <div class="modal-footer">
+        <table class="table">
 
-         </div>
-        </div>
-    <!-- <table class="table table-hover table-active">
-    <tr>
+            <tr>
 
-        <th>ID</th>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Phone</th>
-        <th>Action</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Number</th>
+                <th>Goals</th>
+                <th>Nationality</th>
+                <th>Team ID</th>
 
-    </tr>
+            </tr>
 
 
-   {% for row in employee %}
-    <tr>
-        <td>{{row.id}}</td>
-        <td>{{row.name}}</td>
-        <td>{{row.email}}</td>
-        <td>{{row.phone}}</td>
+            {% for row in data %}
+            <tr>
+
+                <td>{{row.fname}}</td>
+                <td>{{row.lname}}</td>
+                <td>{{row.pl_no}}</td>
+                <td>{{row.pl_goals}}</td>
+                <td>{{row.nationality}}</td>
+                <td>{{row.team_id}}</td>
     </tr>
     {% endfor %}
-</table> -->
+</table>
 </div>
 {% endblock %}

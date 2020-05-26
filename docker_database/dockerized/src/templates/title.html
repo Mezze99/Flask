@@ -12,10 +12,28 @@
 <div class="container">
     <div class="row">
         <div class="col md-12">
+            
+            Tipp: Here are all listed teams. <a href="/team" >Edit TEAM</a> Table first, if a team is missing
+            <br/>
+            Edit the winning team here:
+
+            <table class="table">
+            <tr>
+                <th>Team Name</th>
+                
+            </tr>
+
+
+            {% for row in team %}
+            <tr>
+               <td>{{row.team_name}}</td>
+            </tr>
+            {% endfor %}
+            </table>
 
             <div class="jumbotron p-3">
 
-                <h2>Manage <b>Title</b> <button type="button" class="btn btn-success float-right" data-toggle="modal"
+                <h2>Manage <b>Title</b> <button type="button" class="btn btn-link float-right" data-toggle="modal"
                         data-target="#mymodal">Add New Title</button> </h2>
 
 
@@ -46,12 +64,13 @@
                 {% endwith %}
 
 
-                <table class="table table-hover table-dark">
+                <table class="table table-hover table-default">
 
                     <tr>
 
+                        
+                        <th>No. of Titles</th>
                         <th>Year</th>
-                        <th>Title</th>
                         <th>Winning Team</th>
 
                     </tr>
@@ -64,7 +83,7 @@
                         <td>{{row.winning_team}}</td>
 
                         <td>
-                            <a href="/update_title/{{row.year}}" class="btn btn-warning btn-xs" data-toggle="modal"
+                            <a href="/update_title/{{row.year}}" class="btn btn-primary btn-xs" data-toggle="modal"
                                 data-target="#modaledit{{row.year}}">Edit</a>
                             <a href="/delete_title/{{row.year}}" class="btn btn-danger btn-xs"
                                 onclick="return confirm('Are You Sure To Delete ?')">Delete</a>

@@ -10,18 +10,37 @@
 {% block content %}
 
 <div>
-    <h1>CRUD</h1>
-    Select a Table
-    <!-- <a href="{{ url_for('query_goalgetter') }}" class="btn btn-warning btn-xs">SQL Query - Top Goalgetter</a> -->
-    </div>
-    <div>
-    <a href="/player">Player</a>
-            <a href="{{ url_for('Index') }}">User_Test</a>
-            <a href="/team">Team</a>
-            <a href="/coach">Coach</a>
-            <a href="/membership">Membership</a>
-            <a href="/sponsoring">Sponsoring</a>
-            <a href="/table">Table</a>
-            <a href="/title">Title</a>
-    </div>
-    {% endblock %}
+        <h1>CRUD</h1>
+        Select a Table
+</div>
+<br>
+<hr/>
+<br>
+<div>
+        <ul class="nav nav-pills nav-fill">
+                <li class="nav-item">
+                        <a class="nav-link" href="/team">Team</a>
+                </li>
+                <li class="nav-item">
+                        <a class="nav-link" href="/table">Table </a>
+                </li>
+                <li class="nav-item">
+                        <a class="nav-link" href="/coach">Coach</a>
+                </li>
+                <li class="nav-item">
+                        <a class="nav-link" href="/player">Player</a>
+                </li>
+                <li class="nav-item">
+                        <a class="nav-link" href="/title">Title </a>
+                </li>
+                <li class="nav-item">
+                        <a class="nav-link" href="/sponsoring">Sponsoring </a>
+                </li>
+                <li class="nav-item">
+                        <a class="nav-link" href="/membership">Membership </a>
+                </li>
+        </ul>
+</div>
+<br>
+<hr/>
+{% endblock %}
