@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Player with most goals</h1>
+    <h1>Teams with most goals</h1>
     Your query was succesfully executed.
     {% for post in posts %}
     <div><p>{{ post.author.username }} says: <b>{{ post.body }}</b></p></div>
@@ -11,8 +11,8 @@
             <table class="table">
             <tr>
 
-                <th>First Name</th>
-                <th>Last Name</th>
+                <th>Team ID</th>
+                <th>Team Name</th>
                 <th>No. of Goals</th>
 
             </tr>
@@ -21,7 +21,7 @@
             <tr>
                     <td>{{ u.id }}</td>
                     <td> {{ u.team_name }}</td>
-                    <td>{{ u.pl_goals }}</td>
+                    <td>{{ u.goals }}</td>
                 </tr>
             {% endfor %}
             </table>
