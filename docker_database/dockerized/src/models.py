@@ -4,11 +4,12 @@ from datetime import datetime
 
 db = flask_sqlalchemy.SQLAlchemy()
 
-class Player(db.Model):
-    __tablename__ = "player"
+class Player(db.Model): #declare Table
+    __tablename__ = "player" #declare table name
 
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    team_id = db.Column(db.Integer, db.ForeignKey('team.id'))
+    #declare attibutes
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True) #primary key
+    team_id = db.Column(db.Integer, db.ForeignKey('team.id')) #foreign key
 
     fname = db.Column(db.String(128), nullable=False)
     lname = db.Column(db.String(100))
@@ -16,6 +17,7 @@ class Player(db.Model):
     nationality = db.Column(db.String(100))
     pl_goals = db.Column(db.Integer)
 
+    #initialize attributes
     def __init__(self, fname, lname, pl_no, nationality, pl_goals, team_id):
         self.fname = fname
         self.lname = lname
