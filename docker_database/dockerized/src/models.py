@@ -1,5 +1,6 @@
 
 import flask_sqlalchemy
+from datetime import datetime
 
 db = flask_sqlalchemy.SQLAlchemy()
 
@@ -131,7 +132,7 @@ class Sponsoring(db.Model):
     __tablename__ = "sponsoring"
 
     id = db.Column(db.Integer, primary_key=True)
-    start_date = db.Column(db.DateTime(timezone=True))
+    start_date = db.Column(db.DateTime, nullable=False,default=datetime.utcnow)
     sponsor_name = db.Column(db.String(30))
 
     def __init__(self, start_date, sponsor_name):
