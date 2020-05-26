@@ -226,12 +226,15 @@ def Tables():
 def insert_table():
  
     if request.method == 'POST':
-        position_last_year = request.form['position_last_year']
-        position_this_year = request.form['position_this_year']
+        matches = request.form['matches']
+        wins = request.form['wins']
+        remis = request.form['remis']
+        defeats = request.form['defeats']
+        points = request.form['points']
         idx = request.form['id']
         
      
-        my_data = Table(position_last_year, position_this_year, idx)
+        my_data = Table(matches, wins, remis, defeats, points, idx)
         db.session.add(my_data)
         db.session.commit()
 
@@ -247,8 +250,11 @@ def update_table():
         my_data = Table.query.get(request.form.get('id'))
 
         print('yes')
-        my_data.position_last_year = request.form['position_last_year']
-        my_data.position_this_year = request.form['position_this_year']
+        my_data.matches = request.form['matches']
+        my_data.wins = request.form['wins']
+        my_data.remis = request.form['remis']
+        my_data.defeats = request.form['defeats']
+        my_data.points = request.form['points']
  
         db.session.commit()
         #flash("Table Updated Successfully")
@@ -417,8 +423,9 @@ def insert_sponsoring():
         start_date = request.form['start_date']
         sponsor_name = request.form['sponsor_name']
         team_id = request.form['team_id']
-     
-        my_data = Sponsoring(start_date, sponsor_name, team_id)
+        contract = request.form['contract']
+
+        my_data = Sponsoring(start_date, sponsor_name, team_id, contract)
         db.session.add(my_data)
         db.session.commit()
 
@@ -436,6 +443,7 @@ def update_sponsoring():
         my_data.start_date = request.form['start_date']
         my_data.sponsor_name= request.form['sponsor_name']
         my_data.team_id = request.form['team_id']
+        my_data.contract = request.form['contract']
  
         db.session.commit()
         flash("Table Updated Successfully")

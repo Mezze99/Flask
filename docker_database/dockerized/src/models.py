@@ -94,12 +94,18 @@ class Table(db.Model):
 
     id = db.Column(db.Integer, db.ForeignKey('team.id'), primary_key=True)
 
-    position_last_year = db.Column(db.Integer)
-    position_this_year = db.Column(db.Integer)
+    matches = db.Column(db.Integer)
+    wins = db.Column(db.Integer)
+    remis = db.Column(db.Integer)
+    defeats = db.Column(db.Integer)
+    points = db.Column(db.Integer)
 
-    def __init__(self, position_last_year, position_this_year, id):
-        self.position_last_year = position_last_year
-        self.position_this_year = position_this_year
+    def __init__(self, matches, wins, remis, defeats, points, id):
+        self.matches = matches
+        self.wins = wins
+        self.remis = remis
+        self.defeats = defeats
+        self.points = points
         self.id = id
 
 
@@ -143,12 +149,13 @@ class Sponsoring(db.Model):
     start_date = db.Column(db.DateTime, nullable=False,default=datetime.utcnow)
     sponsor_name = db.Column(db.String(30))
     team_id = db.Column(db.Integer, db.ForeignKey('team.id'))
+    contract = db.Column(db.Integer)
 
-
-    def __init__(self, start_date, sponsor_name, team_id):
+    def __init__(self, start_date, sponsor_name, team_id, contract):
         self.start_date = start_date
         self.sponsor_name = sponsor_name
         self.team_id = team_id
+        self.contract = contract
     
     def __repr__(self):
         return '<Sponsoring %r>' % (self.id)
