@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Player with most goals</h1>
+    Your query was succesfully executed.
+    {% for post in posts %}
+    <div><p>{{ post.author.username }} says: <b>{{ post.body }}</b></p></div>
+    {% endfor %}
+    <div>
+        <div>
+            <table class="table">
+            <tr>
+
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>No. of Goals</th>
+
+            </tr>
+        
+            {% for u in user %}
+            <tr>
+                    <td>{{ u.id }}</td>
+                    <td> {{ u.team_name }}</td>
+                    <td>{{ u.pl_goals }}</td>
+                </tr>
+            {% endfor %}
+            </table>
+
+         </div>
+        </div>
+{% endblock %}

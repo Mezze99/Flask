@@ -65,7 +65,7 @@ class Team(db.Model):
     coaches = db.relationship("Coach", backref='coach', cascade='all, delete', uselist=False)
     sponsorships = db.relationship("Sponsoring", cascade='all, delete', backref='sponsoring')
     titles = db.relationship("Title", cascade='all, delete', backref='titled')
-    memberships = db.relationship("Membership", cascade='all, delete', backref='membership', uselist=False, lazy='joined')
+    memberships = db.relationship("Membership", cascade='all, delete', backref='membership', uselist=False)
 
     def __init__(self, team_name, city):
         self.team_name = team_name

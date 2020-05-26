@@ -37,12 +37,15 @@ def query_goalgetter():
 #Query Teams by number of goals
 @app.route('/query_teamgoals', methods=['GET'])
 def query_teamgoals():
-    
-    myquery = Team.query\
-        .join(Player, Team.id==Player.team_id)\
-        .groupby(Team.id)\
-        .func.sum(Player.pl_goals).label('total')
-    return render_template('query_goalgetter.html', user=myquery)
+    #myquery=1
+    subq = db.session.query(Team, )\
+        .join(Player, Team.id==Player.team_id).all()
+    q = db.session.query(SiteStaff.StaffID, func.sum(SiteStaff.Holiday)).group_by(SiteStaff.StaffID).all()
+    # myquery = db.session.query(Team.id)\
+    #     .join(Player, Team.id==Player.team_id)\
+    #     .groupby(Team.id)\
+    #     .having(func.sum(Player.pl_goals).label('total'))
+    return render_template('query_teamgoals.html', user=subq)
 
 
 ###############################################################################################################
