@@ -5,8 +5,6 @@ from flask import request, render_template, redirect, flash, url_for
 from . import create_app, database
 from .models import (
     db,
-    Soccer,
-    User,
     Player,
     Table,
     Title,
@@ -403,7 +401,7 @@ def delete_coach(id):
 # Membership ######################################################################################################
 ##############
 
-#query Membership
+# query Membership
 @app.route("/membership")
 def Memberships():
     all_data = Membership.query.all()
@@ -450,9 +448,11 @@ def delete_membership(id):
 
     return redirect(url_for("Memberships"))
 
+
 ##############
 # Sponsorship ######################################################################################################
 ##############
+
 
 @app.route("/sponsoring")
 def Sponsorings():

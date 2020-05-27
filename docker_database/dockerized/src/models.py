@@ -29,6 +29,11 @@ class Player(db.Model): #declare Table
     def __repr__(self):
         return '<Player %r>' % (self.name)
 
+sponsor_identifier = db.Table('sponsor_identifier',
+db.Column('s_id', db.Integer, db.ForeignKey('sponsoring.team_id')),
+    db.Column('t_id', db.Integer, db.ForeignKey('team.id'))
+)
+
 class Team(db.Model):
     __tablename__ = "team"
 
@@ -39,7 +44,8 @@ class Team(db.Model):
     #references
     playerss = db.relationship("Player", cascade='all, delete', backref='player')
     coaches = db.relationship("Coach", backref='coach', cascade='all, delete', uselist=False)
-    sponsorships = db.relationship("Sponsoring", cascade='all, delete', backref='sponsoring')
+    #sponsorships = db.relationship("Sponsoring", cascade='all, delete', backref='sponsoring')
+    sponsorships = db.relationship("Sponsoring", secondary=sponsor_identifier, backref='team')
     titles = db.relationship("Title", cascade='all, delete', backref='titled')
     memberships = db.relationship("Membership", cascade='all, delete', backref='membership', uselist=False)
 
@@ -124,8 +130,9 @@ class Sponsoring(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     start_date = db.Column(db.DateTime, nullable=False,default=datetime.utcnow)
     sponsor_name = db.Column(db.String(30))
-    team_id = db.Column(db.Integer, db.ForeignKey('team.id'))
+    team_id = db.Column(db.Integer, unique=True) #, db.ForeignKey('team.id'))
     contract = db.Column(db.Integer)
+
 
     def __init__(self, start_date, sponsor_name, team_id, contract):
         self.start_date = start_date
