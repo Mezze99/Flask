@@ -4,35 +4,12 @@ from datetime import datetime
 
 db = flask_sqlalchemy.SQLAlchemy()
 
+class Player(db.Model): #declare Table
+    __tablename__ = "player" #declare table name
 
-class Soccer(db.Model):
-    __tablename__ = 'soccer'
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100))
-    price = db.Column(db.Integer)
-    breed = db.Column(db.String(100))
-
-class User(db.Model):
-    __tablename__ = "users"
-    id = db.Column(db.Integer, primary_key=True)
-    email = db.Column(db.String(128), unique=True, nullable=False)
-    #active = db.Column(db.Boolean(), default=True, nullable=False)
-    phone = db.Column(db.String(100))
-    name = db.Column(db.String(100))
-
-    def __init__(self, email, name, phone):
-        self.email = email
-        self.name = name
-        self.phone = phone
-
-    def __repr__(self):
-        return '<User %r>' % (self.name)
-
-class Player(db.Model):
-    __tablename__ = "player"
-
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    team_id = db.Column(db.Integer, db.ForeignKey('team.id'))
+    #declare attibutes
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True) #primary key
+    team_id = db.Column(db.Integer, db.ForeignKey('team.id')) #foreign key
 
     fname = db.Column(db.String(128), nullable=False)
     lname = db.Column(db.String(100))
@@ -40,8 +17,7 @@ class Player(db.Model):
     nationality = db.Column(db.String(100))
     pl_goals = db.Column(db.Integer)
 
-    
-
+    #initialize attributes
     def __init__(self, fname, lname, pl_no, nationality, pl_goals, team_id):
         self.fname = fname
         self.lname = lname
@@ -53,6 +29,11 @@ class Player(db.Model):
     def __repr__(self):
         return '<Player %r>' % (self.name)
 
+sponsor_identifier = db.Table('sponsor_identifier',
+db.Column('s_id', db.Integer, db.ForeignKey('sponsoring.team_id')),
+    db.Column('t_id', db.Integer, db.ForeignKey('team.id'))
+)
+
 class Team(db.Model):
     __tablename__ = "team"
 
@@ -63,9 +44,10 @@ class Team(db.Model):
     #references
     playerss = db.relationship("Player", cascade='all, delete', backref='player')
     coaches = db.relationship("Coach", backref='coach', cascade='all, delete', uselist=False)
-    sponsorships = db.relationship("Sponsoring", cascade='all, delete', backref='sponsoring')
+    #sponsorships = db.relationship("Sponsoring", cascade='all, delete', backref='sponsoring')
+    sponsorships = db.relationship("Sponsoring", secondary=sponsor_identifier, backref='team')
     titles = db.relationship("Title", cascade='all, delete', backref='titled')
-    memberships = db.relationship("Membership", cascade='all, delete', backref='membership', uselist=False, lazy='joined')
+    memberships = db.relationship("Membership", cascade='all, delete', backref='membership', uselist=False)
 
     def __init__(self, team_name, city):
         self.team_name = team_name
@@ -148,8 +130,9 @@ class Sponsoring(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     start_date = db.Column(db.DateTime, nullable=False,default=datetime.utcnow)
     sponsor_name = db.Column(db.String(30))
-    team_id = db.Column(db.Integer, db.ForeignKey('team.id'))
+    team_id = db.Column(db.Integer, unique=True) #, db.ForeignKey('team.id'))
     contract = db.Column(db.Integer)
+
 
     def __init__(self, start_date, sponsor_name, team_id, contract):
         self.start_date = start_date

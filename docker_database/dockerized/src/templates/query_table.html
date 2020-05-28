@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Current Table</h1>
+    Your query was succesfully executed.
+    {% for post in posts %}
+    <div><p>{{ post.author.username }} says: <b>{{ post.body }}</b></p></div>
+    {% endfor %}
+    <div>
+        <div>
+            <table class="table">
+            <tr>
+                <th>Position</th>
+                <th>Team Name</th>
+                <th>Matches</th>
+                <th>Wins</th>
+                <th>Remis</th>
+                <th>Defeats</th>
+                <th>Points</th>
+
+            </tr>
+        
+            {% for u in user %}
+            <tr>    
+                    <td>{{ loop.index }}</td>
+                    <td>{{ u.team_name }}</td>
+                    <td> {{ u.matches }}</td>
+                    <td>{{ u.wins }}</td>
+                    <td>{{ u.remis }}</td>
+                    <td> {{ u.defeats }}</td>
+                    <td>{{ u.points }}</td>
+                </tr>
+            {% endfor %}
+            </table>
+
+         </div>
+        </div>
+{% endblock %}

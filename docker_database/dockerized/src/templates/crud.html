@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+
+
+
+{% block title %} Home {% endblock %}
+
+
+
+{% block content %}
+
+<div>
+        <h1>CRUD</h1>
+        Select a Table
+</div>
+<br>
+<hr/>
+<br>
+<div>
+        <ul class="nav nav-pills nav-fill">
+                <li class="nav-item">
+                        <a class="nav-link" href="/team">Team</a>
+                </li>
+                <li class="nav-item">
+                        <a class="nav-link" href="/table">Table </a>
+                </li>
+                <li class="nav-item">
+                        <a class="nav-link" href="/coach">Coach</a>
+                </li>
+                <li class="nav-item">
+                        <a class="nav-link" href="/player">Player</a>
+                </li>
+                <li class="nav-item">
+                        <a class="nav-link" href="/title">Title </a>
+                </li>
+                <li class="nav-item">
+                        <a class="nav-link" href="/sponsoring">Sponsoring </a>
+                </li>
+                <li class="nav-item">
+                        <a class="nav-link" href="/membership">Membership </a>
+                </li>
+        </ul>
+</div>
+<br>
+<hr/>
+{% endblock %}

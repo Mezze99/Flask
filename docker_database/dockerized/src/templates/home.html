@@ -1,46 +1,68 @@
-{% extends 'base.html' %}
-
-
-
-
-{% block title %} Home {% endblock %}
-
-
+{% extends "base.html" %}
 
 {% block content %}
+<h1>Welcome to the Ultimate Soccer Team DB</h1>
 
+
+<h2>About</h2>
+
+TODO Later added
+1. -- what db represents -> soccer teams - views, crud, queries
+
+2. The creators implemented an insert function, so that the database is initially loaded.
+
+
+
+
+<h2>Error Handling</h2>
+TODO Later added
+
+
+<!-- ########################################## -->
+<br />
+TODO: Transaction ?! -> inform + implement in sql flask-alchemy
+<br />
+Done: change color sheme to user/employee table
+<br />
+Done: initial insert function
+<br />
+Done: query by Player name
+<br />
+Done query by Team with most goals this season
+<br />
+TODO query by ...
+<br />
+TODO: query by nationality and goals
+<br />
+TODO query by Team mit meisten Titel
+<br />
+<!-- ########################################## -->
+
+<br />
+<!-- View of current teams -->
 <div>
-        <h1>CRUD</h1>
-        Select a Table
-</div>
-<br>
-<hr/>
-<br>
-<div>
-        <ul class="nav nav-pills nav-fill">
-                <li class="nav-item">
-                        <a class="nav-link" href="/team">Team</a>
-                </li>
-                <li class="nav-item">
-                        <a class="nav-link" href="/table">Table </a>
-                </li>
-                <li class="nav-item">
-                        <a class="nav-link" href="/coach">Coach</a>
-                </li>
-                <li class="nav-item">
-                        <a class="nav-link" href="/player">Player</a>
-                </li>
-                <li class="nav-item">
-                        <a class="nav-link" href="/title">Title </a>
-                </li>
-                <li class="nav-item">
-                        <a class="nav-link" href="/sponsoring">Sponsoring </a>
-                </li>
-                <li class="nav-item">
-                        <a class="nav-link" href="/membership">Membership </a>
-                </li>
-        </ul>
-</div>
-<br>
-<hr/>
+        <h2> View of all Teams in DB </h2>
+        <table class="table table-hover table-active">
+            <tr>
+            <tr>
+    
+                <th>ID</th>
+                <th>Team Name</th>
+                <th>City</th>
+    
+            </tr>
+    
+    
+            {% for row in data %}
+            <tr>
+                <td>{{row.id}}</td>
+                <td>{{row.team_name}}</td>
+                <td>{{row.city}}</td>
+            </tr>
+            {% endfor %}
+    
+        </table>
+    
+    </div>
+
 {% endblock %}
