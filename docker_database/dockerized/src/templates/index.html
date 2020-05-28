@@ -19,6 +19,10 @@ Trigger SQL queries.
     <a href="{{ url_for('query_table') }}" class="btn btn-warning btn-xs">SQL Query - CurrentTable</a>
 </div>
 <br />
+<div>
+    <a href="{{ url_for('query_exists') }}" class="btn btn-warning btn-xs">SQL Query - Eintracht Frankfurt exists?</a>
+</div>
+<br />
 <div>Query Player by lastname <br> (check spelling)
     <form action="{{ url_for('run') }}" method="post">
         <div>

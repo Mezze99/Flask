@@ -47,6 +47,7 @@ class Team(db.Model):
     #sponsorships = db.relationship("Sponsoring", cascade='all, delete', backref='sponsoring')
     sponsorships = db.relationship("Sponsoring", secondary=sponsor_identifier, backref='team')
     titles = db.relationship("Title", cascade='all, delete', backref='titled')
+    tables = db.relationship("Table", cascade='all, delete', backref='table')
     memberships = db.relationship("Membership", cascade='all, delete', backref='membership', uselist=False)
 
     def __init__(self, team_name, city):

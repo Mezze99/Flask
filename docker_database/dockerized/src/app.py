@@ -99,6 +99,12 @@ def query_table():
 
     return render_template("query_table.html", user=query)
 
+@app.route("/query_exist", methods=["GET"])
+def query_exists():
+
+    query = db.session.query(db.exists().where(Team.team_name == "Eintracht Frankfurt")).scalar()
+    return render_template("query_exists.html", user=query)
+
 
 ###############################################################################################################
 # CRUD #

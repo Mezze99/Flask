@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Does Eintracht Frankfurt exists in DB?</h1>
+    Your query was succesfully executed.
+    <hr/>
+    <br>
+    <br>
+        <div>
+            {% if user %}
+            Yes there Eintracht Frankfurt exists in the database. For further information or to edit and manage Teams <a href="/team">click here</a>.
+            {% else %}
+            No there is no Team called Eintracht Frankfurt in the database. For further information or to add and manage Teams <a href="/team">click here</a>.
+            {%endif%}
+        </div>
+{% endblock %}
