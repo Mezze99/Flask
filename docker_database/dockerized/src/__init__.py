@@ -13,9 +13,6 @@ def create_app():
     flask_app.app_context().push()
     db.init_app(flask_app)
     db.create_all()
-    try:
-        initial_insert.run_insert()
-    except:
-        pass
+    #initial_insert.run_insert()
     flask_app.secret_key = config.SECRET_KEY
     return flask_app

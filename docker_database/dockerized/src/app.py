@@ -1,6 +1,7 @@
 import json
 
 from flask import request, render_template, redirect, flash, url_for
+from sqlalchemy.sql import func
 
 from . import create_app, database
 from .models import (
@@ -99,6 +100,7 @@ def query_table():
 
     return render_template("query_table.html", user=query)
 
+<<<<<<< HEAD
 # Query Teams by number of goals
 @app.route("/query_title", methods=["GET"])
 def query_title():
@@ -122,6 +124,13 @@ def query_exists():
     query = db.session.query(db.exists().where(Team.team_name == "Eintracht Frankfurt")).scalar()
     return render_template("query_exists.html", user=query)
 
+=======
+# Query sum of memberships (ordered)
+@app.route("/query_memberships", methods=["GET"])
+def query_memberships():
+    qry = db.session.query(func.sum(Membership.number_members).label("mem_sum"))
+    return render_template("query_memberships.html", data=qry)
+>>>>>>> 2cbc684f219dffe8b4aae3d71373401bb28713eb
 
 ###############################################################################################################
 # CRUD #
@@ -528,3 +537,5 @@ def delete_sponsoring(id):
     flash("Sponsorship Deleted Successfully")
 
     return redirect(url_for("Sponsorings"))
+
+
