@@ -99,7 +99,24 @@ def query_table():
 
     return render_template("query_table.html", user=query)
 
-@app.route("/query_exist", methods=["GET"])
+# Query Teams by number of goals
+@app.route("/query_title", methods=["GET"])
+def query_title():
+
+    titl = (
+        db.session.query(Title.winning_team, db.func.count(Title.year).label("titles"))
+        .group_by(Title.winning_team)
+        .subquery()
+    )
+
+    query = (
+        Team.query.join(titl, Team.team_name == titl.c.titles)
+        .add_columns(Team.id, Team.team_name, titl.c.titles)
+    )
+
+    return render_template("query_title.html", user=query)
+
+@app.route("/query_exists", methods=["GET"])
 def query_exists():
 
     query = db.session.query(db.exists().where(Team.team_name == "Eintracht Frankfurt")).scalar()

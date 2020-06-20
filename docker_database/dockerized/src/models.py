@@ -75,7 +75,7 @@ class Title(db.Model):
 class Table(db.Model):
     __tablename__ = "table"
 
-    id = db.Column(db.Integer, db.ForeignKey('team.id'), primary_key=True)
+    id = db.Column(db.BIGINT, db.ForeignKey('team.id'), primary_key=True)
 
     matches = db.Column(db.Integer)
     wins = db.Column(db.Integer)
