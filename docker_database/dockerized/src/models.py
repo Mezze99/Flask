@@ -45,7 +45,8 @@ class Team(db.Model):
     playerss = db.relationship("Player", cascade='all, delete', backref='player')
     coaches = db.relationship("Coach", backref='coach', cascade='all, delete', uselist=False)
     #sponsorships = db.relationship("Sponsoring", cascade='all, delete', backref='sponsoring')
-    sponsorships = db.relationship("Sponsoring", secondary=sponsor_identifier, backref='team')
+    #sponsorships = db.relationship("Sponsoring", secondary=sponsor_identifier, backref='team')
+    sponsor_identifier = db.relationship("Sponsoring", secondary=sponsor_identifier, lazy='subquery', backref=db.backref('team', lazy=True))
     titles = db.relationship("Title", cascade='all, delete', backref='titled')
     tables = db.relationship("Table", cascade='all, delete', backref='table')
     memberships = db.relationship("Membership", cascade='all, delete', backref='membership', uselist=False)
@@ -61,11 +62,11 @@ class Title(db.Model):
     __tablename__ = "titled"
 
     year = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(30))
+    #title = db.Column(db.String(30))
     winning_team=db.Column(db.String(128), db.ForeignKey('team.team_name'), nullable=False)
 
-    def __init__(self, title, year, winning_team):
-        self.title = title
+    def __init__(self, year, winning_team):
+        #self.title = title
         self.year = year
         self.winning_team = winning_team
 
@@ -131,7 +132,7 @@ class Sponsoring(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     start_date = db.Column(db.DateTime, nullable=False,default=datetime.utcnow)
     sponsor_name = db.Column(db.String(30))
-    team_id = db.Column(db.Integer, unique=True) #, db.ForeignKey('team.id'))
+    team_id = db.Column(db.Integer, unique=True)
     contract = db.Column(db.Integer)
 
 

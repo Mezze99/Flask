@@ -49,14 +49,14 @@ coaches = [Coach(first_name="Quique", last_name="Setién", nationality="Spain", 
         Coach(first_name="Stefano", last_name="Pioli", nationality="Italia", id=5),
         Coach(first_name="Adi", last_name="Hütter", nationality="Austria", id=6)]
 
-titles = [Title(title="UEFA Champions League", year= "2013", winning_team="Bayern Munich"),
-       Title(title="UEFA Champions League", year= "2014", winning_team="Real Madrid"),
-       Title(title="UEFA Champions League", year= "2015", winning_team="FC Barcelona"),
-       Title(title="UEFA Champions League", year= "2016", winning_team="Real Madrid"),
-       Title(title="UEFA Champions League", year= "2017", winning_team="Real Madrid"),
-       Title(title="UEFA Champions League", year= "2018", winning_team="Real Madrid"),
-       Title(title="UEFA Champions League", year= "2019", winning_team="Eintracht Frankfurt"),
-       Title(title="UEFA Champions League", year= "2020", winning_team="AC Milano")]
+titles = [Title(year= "2013", winning_team="Bayern Munich"),
+       Title(year= "2014", winning_team="Real Madrid"),
+       Title(year= "2015", winning_team="FC Barcelona"),
+       Title(year= "2016", winning_team="Real Madrid"),
+       Title(year= "2017", winning_team="Real Madrid"),
+       Title(year= "2018", winning_team="Real Madrid"),
+       Title(year= "2019", winning_team="Eintracht Frankfurt"),
+       Title(year= "2020", winning_team="AC Milano")]
 
 sponsorings = [Sponsoring(start_date="20-06-2016", sponsor_name="Rakuten", team_id=1, contract=80),
             Sponsoring(start_date="04-07-2017", sponsor_name="Fly Emirates", team_id=2, contract=73),

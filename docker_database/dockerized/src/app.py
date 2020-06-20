@@ -100,7 +100,6 @@ def query_table():
 
     return render_template("query_table.html", user=query)
 
-<<<<<<< HEAD
 # Query Teams by number of goals
 @app.route("/query_title", methods=["GET"])
 def query_title():
@@ -112,8 +111,8 @@ def query_title():
     )
 
     query = (
-        Team.query.join(titl, Team.team_name == titl.c.titles)
-        .add_columns(Team.id, Team.team_name, titl.c.titles)
+        Team.query.join(titl, Team.team_name == titl.c.winning_team)
+        .add_columns(Team.id, Team.team_name, titl.c.titles).order_by(titl.c.titles.desc())
     )
 
     return render_template("query_title.html", user=query)
@@ -124,13 +123,11 @@ def query_exists():
     query = db.session.query(db.exists().where(Team.team_name == "Eintracht Frankfurt")).scalar()
     return render_template("query_exists.html", user=query)
 
-=======
 # Query sum of memberships (ordered)
 @app.route("/query_memberships", methods=["GET"])
 def query_memberships():
     qry = db.session.query(func.sum(Membership.number_members).label("mem_sum"))
     return render_template("query_memberships.html", data=qry)
->>>>>>> 2cbc684f219dffe8b4aae3d71373401bb28713eb
 
 ###############################################################################################################
 # CRUD #
@@ -335,10 +332,10 @@ def insert_title():
 
     if request.method == "POST":
         year = request.form["year"]
-        title = request.form["title"]
+        #title = request.form["title"]
         winning_team = request.form["winning_team"]
 
-        my_data = Title(year, title, winning_team)
+        my_data = Title(year, winning_team)
         db.session.add(my_data)
         db.session.commit()
 
@@ -353,8 +350,8 @@ def update_title():
     if request.method == "POST":
         my_data = Title.query.get(request.form.get("year"))
 
-        my_data.year = request.form["year"]
-        my_data.title = request.form["title"]
+        #my_data.year = request.form["year"]
+        #my_data.title = request.form["title"]
         my_data.winning_team = request.form["winning_team"]
 
         db.session.commit()
