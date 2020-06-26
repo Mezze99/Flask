@@ -1,5 +1,6 @@
 # Flask
-Databases (still using docker)
+Databases - Project
+by Tim Kauer, Sven Metzger and Georg Schieck
 
 
 10 steps to heaven ;)
@@ -7,7 +8,7 @@ Databases (still using docker)
 
 1. Install Docker
 
-2. Python 3.6.7 recommended
+2. Python 3.6.8 recommended
 
 3. cd to Flask/docker_database/dockerized
 
@@ -16,7 +17,7 @@ Databases (still using docker)
 
 Optional: (create virtual environment)
 
-5. 
+5. Install dependencies 
 > pip install -r requirements.txt
 
 6.
@@ -25,6 +26,10 @@ Optional: (create virtual environment)
 7. 
 > cd to Flask/docker_database/dockerized/src
 
+8.1
+Open pgadmin and create a new database and name it "soccer"
+
+8.2
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 open config.py in visual studio -> 
 
