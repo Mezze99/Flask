@@ -4,6 +4,7 @@ from .models import Team, Player, Coach, Title, Sponsoring, Membership, Table
 
 db = flask_sqlalchemy.SQLAlchemy()
 
+#data declared here will be inserted in respective table on initial load of db
 teams = [Team(team_name="FC Barcelona", city="Barcelona"),
         Team(team_name="Real Madrid", city="Madrid"),
         Team(team_name="Bayern Munich", city="Munich"),

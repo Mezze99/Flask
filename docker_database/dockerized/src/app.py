@@ -3,7 +3,7 @@ import json
 from flask import request, render_template, redirect, flash, url_for
 from sqlalchemy.sql import func
 
-from . import create_app, database
+from . import create_app
 from .models import (
     db,
     Player,
